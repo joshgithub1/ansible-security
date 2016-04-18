@@ -1,11 +1,14 @@
 #!/bin/bash
 set -e
 
+echo "Setting the $options variable for build"
+echo "----------------------------------"
 options="--rm"
 echo $@ | grep '\--no-cache' &> /dev/null && options="$options --no-cache" || :
 
-echo "Build Ansible Control image."
-docker build $options -t ~/ansible-security/Docker .
+echo "Building the Ansible Control image"
+echo "----------------------------------"
+docker build $options -t ~/ansible-security/Docker/Dockerfile
 
 echo "Show image sizes."
 docker images | egrep '^ansible\b' | sort
