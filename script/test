@@ -1,0 +1,4 @@
+#!/bin/bash
+set -ex -o pipefail
+
+echo "Step1: Echo Test""

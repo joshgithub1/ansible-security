@@ -1,0 +1,17 @@
+# https://circleci.com/docs/docker
+machine:
+  services:
+    -docker
+
+dependencies:
+  pre:
+    - sudo pip install pep8==1.6.2
+    - cat /etc/os-release
+  override:
+    - docker info
+    - docker version
+    - script/build
+
+test:
+  override:
+    - script/test

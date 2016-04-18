@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+options="--rm"
+echo $@ | grep '\--no-cache' &> /dev/null && options="$options --no-cache" || :
+
+echo "Build Ansible Control image."
+docker build $options -t cleanerbot/ansible-security/Docker .
+
+echo "Show image sizes."
+docker images | egrep '^ansible\b' | sort
+
+echo
+echo "WARN: you should docker tag the ansible control host image."
+echo
