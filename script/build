@@ -5,7 +5,7 @@ options="--rm"
 echo $@ | grep '\--no-cache' &> /dev/null && options="$options --no-cache" || :
 
 echo "Building the Ansible Control image"
-docker build --rm -t ~/ansible-security/Docker/Dockerfile
+docker build $options -t /ansible-security/Docker/ .
 
 echo "Show image sizes."
 docker images | egrep '^ansible\b' | sort
