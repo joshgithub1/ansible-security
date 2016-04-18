@@ -3,8 +3,7 @@ MAINTAINER Tim Kropp @sometheycallme
 
 
 # setup the Ansible control environment dependencies
-# http://docs.ansible.com/ansible/intro_installation.html#control-machine-requirements
-
+# http://docs.ansible.com/ansible/intro_installation.html
 RUN yum -y install 
       vim \ 
       epel-release \
@@ -25,12 +24,10 @@ RUN yum -y install
     pip install httplib2==0.9.2 && \
     pip install six==1.10.0 && \
     pip install ansible==2.0.0 && \
-    pip install ipaddress && \
-    pip install matplotlib && \
     pip install xmlrunner==1.7.7 && \
     pip install gitpython==1.0.1 && \
     echo "cd ~/ansible-security/" >> ~/.bashrc
     
-ENV ANSIBLE_HOSTS /root/ansible-security/hosts
+ENV ANSIBLE_INVENTORY /root/ansible-security/inventory
 ENV ANSIBLE_HOST_KEY_CHECKING False
 ENV WORKDIR /root/ansible-security
