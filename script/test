@@ -1,4 +1,5 @@
 #!/bin/bash
+# reminder chmod 755
 set -ex -o pipefail
 
 echo "Step1: Echo Test""
