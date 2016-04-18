@@ -1,7 +1,7 @@
 # https://circleci.com/docs/docker
 machine:
   services:
-    -docker
+    - docker
 
 dependencies:
   pre:
