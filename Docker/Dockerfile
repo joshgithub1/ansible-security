@@ -4,16 +4,8 @@ MAINTAINER Tim Kropp @sometheycallme
 
 # setup the Ansible control environment dependencies
 # http://docs.ansible.com/ansible/intro_installation.html
-RUN yum -y install 
-      vim \ 
-      epel-release \
-      json-devel \
-      libyaml \
-      libyaml-devel \
-      git \
-      python-devel \ 
-      sshpass \ 
-      expect \  
+RUN yum -y install vim epel-release json-devel libyaml ansible \
+    && yum -y update \ 
     && yum clean all \ 
     && wget -q --no-check-certificate https://bootstrap.pypa.io/get-pip.py 
     && python get-pip.py && \
