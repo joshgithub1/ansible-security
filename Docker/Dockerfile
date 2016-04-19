@@ -7,9 +7,10 @@ MAINTAINER Tim Kropp @sometheycallme
 
 RUN yum -y install ansible wget python-setuptools python-pip python-wheel && \
     yum -y update && \ 
-    yum clean all && \ 
-    pip install paramiko PyYAML Jinja2 httplib2 six
+    yum clean all  
+
+#    pip install paramiko PyYAML Jinja2 httplib2 six
     
-ENV ANSIBLE_INVENTORY /root/ansible-security/inventory
-ENV ANSIBLE_HOST_KEY_CHECKING False
-ENV WORKDIR /root/ansible-security
+# ENV ANSIBLE_INVENTORY /root/ansible-security/inventory
+# ENV ANSIBLE_HOST_KEY_CHECKING False
+# ENV WORKDIR /root/ansible-security
