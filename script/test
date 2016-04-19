@@ -2,4 +2,4 @@
 set -ex -o pipefail
 
 echo "Step1: Test for basic ansible install"
-docker run -t -i --entrypoint bash sometheycallme/ansible-controller -c "ls /opt/ansible/ansible" | grep ansible
+docker run -t -i --entrypoint bash cleanerbot/ansible-security -c "ls /opt/ansible" | grep ansible
