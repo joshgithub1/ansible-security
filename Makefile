@@ -14,4 +14,4 @@ runtime:
 
 .PHONY: test
 test:
-	bats test/test_*.bats
+	bats script/test_*.bats
