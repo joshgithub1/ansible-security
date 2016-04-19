@@ -6,7 +6,11 @@ RUN yum clean all && \
     yum -y install epel-release && \
     yum -y install PyYAML python-jinja2 python-httplib2 python-keyczar python-paramiko python-setuptools git python-pip
 
-# create path to working directory
+# install Bash Automated Testing Suite
+RUN git clone git://github.com/sstephenson/bats.git /tmp/bats && \
+    cd /tmp/bats && ./install.sh /usr/local && rm -rf /tmp/bats
+
+# create path to Ansible working directory
 RUN mkdir /etc/ansible/
 
 # create seed host 
