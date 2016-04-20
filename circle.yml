@@ -31,6 +31,6 @@ deployment:
     owner: cleanerbot
     commands:
       - docker login -e ${mail} -u ${user} -p ${pass}
-      - docker tag sometheycallme/ansible-controller sometheycallme/ansible-controller:0.0.1-${CIRCLE_SHA1:0:7}
+      - docker tag sometheycallme/ansible-controller sometheycallme/ansible-controller:latest
       - docker push sometheycallme/ansible-controller:latest
       - docker logout
