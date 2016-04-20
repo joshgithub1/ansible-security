@@ -10,9 +10,6 @@ docker build $options -t cleanerbot/ansible-security:latest Docker/
 echo "Show image sizes."
 docker images | egrep '^ansible\b' | sort
 
-echo "Tag the image"
-docker tag cleanerbot/ansible-security:latest sometheycallme/ansible-security
-
 echo
 echo "WARN: you should docker tag the ansible control host image."
 echo
