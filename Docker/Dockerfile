@@ -27,7 +27,3 @@ ENV ANSIBLE_INVENTORY /etc/ansible/inventory
 ENV PATH /opt/ansible/ansible/bin:/bin:/usr/bin:/sbin:/usr/sbin
 ENV PYTHONPATH /opt/ansible/ansible/lib
 ENV ANSIBLE_LIBRARY /opt/ansible/ansible/library
-   
-# ENV ANSIBLE_INVENTORY /root/ansible-security/inventory
-# ENV ANSIBLE_HOST_KEY_CHECKING False
-# ENV WORKDIR /root/ansible-security
