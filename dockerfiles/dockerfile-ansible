@@ -1,10 +1,10 @@
 FROM centos:latest
 MAINTAINER Tim Kropp @sometheycallme
 
-# install dependencies
+# install dependencies for Ansible Controller & GOCD agent
 RUN yum clean all && \
     yum -y install epel-release && \
-    yum -y install PyYAML python-jinja2 python-httplib2 python-keyczar python-paramiko python-setuptools git python-pip
+    yum -y install PyYAML python-jinja2 python-httplib2 python-keyczar python-paramiko python-setuptools git python-pip openjdk-7-jre-headless
 
 # install Bash Automated Testing Suite
 RUN git clone git://github.com/sstephenson/bats.git /tmp/bats && \
@@ -22,7 +22,17 @@ RUN git clone http://github.com/ansible/ansible.git /opt/ansible/ansible
 WORKDIR /opt/ansible/ansible
 RUN git submodule update --init
 
-# create environment settings
+# install GO Continous Delivery agent
+# https://docs.go.cd/current/installation/install/agent/linux.html
+WORKDIR /tmp
+RUN cd /tmp && curl -L -O https://download.go.cd/binaries/16.4.0-3223/rpm/go-agent-16.4.0-3223.noarch.rpm
+RUN yum -y localinstall /tmp/go-agent-*.rpm --nogpgcheck
+RUN rm -f /tmp/go-agent-*.rpm
+RUN sed -r -i "s/^(GO_SERVER)=(.*)/\1=\$SERVER_PORT_8153_TCP_ADDR/g" /etc/default/go-agent
+VOLUME ["/var/lib/go-agent"]
+CMD /usr/lib/jvm/jre-1.7.0-openjdk.x86_64/bin/java -jar /usr/share/go-agent/agent-bootstrapper.jar $SERVER_PORT_8153_TCP_ADDR $SERVER_PORT_8153_TCP_PORT
+
+# create Ansible environment settings
 ENV ANSIBLE_INVENTORY /etc/ansible/inventory
 ENV PATH /opt/ansible/ansible/bin:/bin:/usr/bin:/sbin:/usr/sbin
 ENV PYTHONPATH /opt/ansible/ansible/lib
