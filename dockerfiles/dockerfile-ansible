@@ -1,10 +1,10 @@
 FROM centos:latest
 MAINTAINER Tim Kropp @sometheycallme
 
-# install dependencies
+# install dependencies for Ansible Controller & GOCD agent
 RUN yum clean all && \
     yum -y install epel-release && \
-    yum -y install PyYAML python-jinja2 python-httplib2 python-keyczar python-paramiko python-setuptools git python-pip
+    yum -y install PyYAML python-jinja2 python-httplib2 python-keyczar python-paramiko python-setuptools git python-pip openjdk-7-jre-headless
 
 # install Bash Automated Testing Suite
 RUN git clone git://github.com/sstephenson/bats.git /tmp/bats && \
@@ -27,7 +27,7 @@ RUN git submodule update --init
 WORKDIR /tmp
 RUN cd /tmp && curl -L -O http://download.go.cd/gocd-rpm/go-agent-16.3.0-3138.noarch.rpm
 RUN yum -y localinstall /tmp/go-agent-16.3.0.3138.noarch.rpm
-RUN rm -f /tmp/go-agent-16.3.0-3138.noarch.rpm
+RUN rm -f /tmp/go-agent-16.3.0-3138.noarch.rpm --nogpgcheck
 RUN sed -r -i "s/^(GO_SERVER)=(.*)/\1=\$SERVER_PORT_8153_TCP_ADDR/g" /etc/default/go-agent
 VOLUME ["/var/lib/go-agent"]
 CMD /usr/lib/jvm/jre-1.7.0-openjdk.x86_64/bin/java -jar /usr/share/go-agent/agent-bootstrapper.jar $SERVER_PORT_8153_TCP_ADDR $SERVER_PORT_8153_TCP_PORT
