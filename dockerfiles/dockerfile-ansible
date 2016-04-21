@@ -24,6 +24,7 @@ RUN git submodule update --init
 
 # install GO Continous Delivery agent
 # https://docs.go.cd/current/installation/install/agent/linux.html
+WORKDIR /tmp
 RUN cd /tmp && curl -L -O http://download.go.cd/gocd-rpm/go-agent-16.3.0-3138.noarch.rpm
 RUN yum -y localinstall /tmp/go-agent-16.3.0.3138.noarch.rpm
 RUN rm -f /tmp/go-agent-16.3.0-3138.noarch.rpm
