@@ -12,6 +12,7 @@ load options
   [[ ${output} =~ 127.0.0.1 ]]
 }
 
-@test "gocd agent is installed"
+@test "gocd agent is installed" {
   run docker run -t -i --entrypoint bash cleanerbot/ansible-security -c "ls /etc/default"
   [[ ${output} =~ go-agent ]]
+}
