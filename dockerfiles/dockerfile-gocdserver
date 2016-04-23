@@ -1,2 +1,0 @@
-FROM gocd/gocdserver:latest
-
