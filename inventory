@@ -8,7 +8,6 @@ pa-prod
 
 [pa-test]
 testfw01
-testfw02
 
 [pa-prod]
 prodfw01
