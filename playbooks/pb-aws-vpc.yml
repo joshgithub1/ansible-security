@@ -1,8 +1,13 @@
 ---
-- include_vars: access_vars.yml
+vars:
+  ansible_connection: local
+
+vars_files: 
+  - "../variables/credentials.yml"
 
 ec2_vpc:
-  key_name: {{aws_access_key}}
+  access_key: "{{aws_access_key}}"
+  secret_key: "{{aws_secret_key}}"
   state: present
   cidr_block: 192.168.0/16
   resource_tags: { "Environment":"Development" }
