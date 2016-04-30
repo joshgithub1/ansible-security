@@ -3,7 +3,7 @@
    connection: local
    gather_facts: no
    vars_files:
-     - aws/vars/vpc.yml
-     - aws/vars/ec2_key.yml
+     - aws/vars_vpc.yml
+     - aws/ec2_key.yml
    tasks:
-     - include: aws/tasks/vpc.yml
+     - include: aws/vpc.yml
