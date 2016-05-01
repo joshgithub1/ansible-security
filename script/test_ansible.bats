@@ -9,7 +9,7 @@ load options
 
 @test "boto is imported" {
   run docker run -t -i --entrypoint bash cleanerbot/ansible-security -c "python; import boto; python exit()"
-  [[ ${output} =~ ]]
+  [[ ${output} =~ python ]]
 }
 @test "ansible working directory is created" {
   run docker run -t -i --entrypoint bash cleanerbot/ansible-security -c "ls /opt/ansible"
