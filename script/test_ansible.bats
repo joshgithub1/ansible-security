@@ -2,6 +2,11 @@
 
 load options
 
+@test "python version" {
+  run docker run -t -i --entrypoint bash cleanerbot/ansible-security -c "python"
+  [[ ${output} =~ 2.7.9 ]]
+}
+
 @test "ansible working directory is created" {
   run docker run -t -i --entrypoint bash cleanerbot/ansible-security -c "ls /opt/ansible"
   [[ ${output} =~ ansible ]]
