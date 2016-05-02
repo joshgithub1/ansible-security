@@ -1,0 +1,14 @@
+---
+  - name: INTERFACE DESCRIPTION
+    hosts: pa-test
+    connection: local
+    gather_facts: no
+
+    tasks:
+
+      - name: ENSURE INTERFACE DESCRIPTION EXISTS
+        pa_interface: vlan_id={{ item }} username={{ un }} password={{ pwd }} host={{ inventory_hostname }}
+        with_items:
+          - 200
+          - 201
+          - 202

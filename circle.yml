@@ -14,6 +14,7 @@ dependencies:
     - tar -xf ~/deps/bats_v${BATS_VER}.tar.gz
     - sudo bats-${BATS_VER}/install.sh /usr/local
     - sudo pip install pep8==1.6.2
+    - sudo pip install boto
     - cat /etc/os-release
   override:
     - docker info

@@ -2,6 +2,15 @@
 
 load options
 
+@test "python version is < 3" {
+  run docker run -t -i --entrypoint bash cleanerbot/ansible-security -c "python -V"
+  [[ ${output} =~ 2 ]]
+}
+
+@test "boto is imported" {
+  run docker run -t -i --entrypoint bash cleanerbot/ansible-security -c "python; import boto; python exit()"
+  [[ ${output} =~ python ]]
+}
 @test "ansible working directory is created" {
   run docker run -t -i --entrypoint bash cleanerbot/ansible-security -c "ls /opt/ansible"
   [[ ${output} =~ ansible ]]
