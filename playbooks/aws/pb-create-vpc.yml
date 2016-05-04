@@ -4,6 +4,5 @@
    gather_facts: no
    vars_files:
      - aws/vars_vpc.yml
-     - aws/ec2_key.yml
    tasks:
      - include: aws/vpc.yml

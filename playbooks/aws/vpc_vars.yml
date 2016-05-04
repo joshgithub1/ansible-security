@@ -10,9 +10,7 @@
  private_cidr: 192.168.3.0/24
  private_az: "{{ vpc_region }}c"
 
- # Please don't change the variables below, until you know what you are doing
- #
- # Subnets Defination for VPC
+ # Subnets Definition for VPC
  vpc_subnets:
    - cidr: "{{ public_cidr_1 }}" # Public Subnet-1
      az: "{{ public_az_1 }}"
