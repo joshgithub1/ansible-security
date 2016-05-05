@@ -18,7 +18,7 @@ load options
 
 @test "ansible can ping" {
   run docker run -t -i --entrypoint bash cleanerbot/ansible-security -c "ansible all -m ping"
-  [[ ${output} =~ 127.0.0.1 ]]
+  [[ ${output} =~ localhost ]]
 }
 
 @test "gocd agent is installed" {
