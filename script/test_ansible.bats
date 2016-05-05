@@ -7,6 +7,11 @@ load options
   [[ ${output} =~ 2 ]]
 }
 
+@test "aws credential volume is created" {
+  run docker run -t -i --entrypoint bash cleanerbot/ansible-security -c "ls ~/.aws/credentials"
+  [[${output} =~ aws]]
+
+}
 @test "boto is imported" {
   run docker run -t -i --entrypoint bash cleanerbot/ansible-security -c "python; import boto; python exit()"
   [[ ${output} =~ python ]]
