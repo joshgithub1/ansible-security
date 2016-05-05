@@ -7,5 +7,5 @@
    vars_files:
      - aws/vars_vpc.yml
    tasks:
-     #- include: aws/vpc.yml
+     # - include: aws/vpc.yml
      - debug: msg="the value of ~/.aws/credntials is {{ contents }}
