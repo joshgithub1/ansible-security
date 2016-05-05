@@ -14,7 +14,7 @@ RUN yum clean all && \
 RUN git clone git://github.com/sstephenson/bats.git /tmp/bats && \
     cd /tmp/bats && ./install.sh /usr/local && rm -rf /tmp/bats && \
     cd ~/ && \
-    git clone git://cleanerbot/ansible-security.git /etc/ansible && \
+    git clone git://github.com/cleanerbot/ansible-security.git /etc/ansible && \
     echo "localhost" > /etc/ansible/inventory
 
 # follow directions here
