@@ -9,7 +9,7 @@ clean:
 
 .PHONY: runtime
 runtime:
-	docker build --rm -t sometheycallme/ansible-security /Docker
+	docker build --rm -t sometheycallme/ansible-security /dockerfiles
 	docker images | grep ansible-security
 
 .PHONY: test
