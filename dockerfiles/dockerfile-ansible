@@ -5,3 +5,14 @@ RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
       ansible \
       python
+
+# install Bash Automated Testing Suite
+# create ansible working directory
+# pull in ansible playbooks
+# update ansible from source
+
+RUN git clone git://github.com/sstephenson/bats.git /tmp/bats && \
+    cd /tmp/bats && ./install.sh /usr/local && rm -rf /tmp/bats && \
+    cd ~/ && \
+    git clone git://github.com/cleanerbot/ansible-security.git /etc/ansible && \
+    echo "localhost" > /etc/ansible/inventory
