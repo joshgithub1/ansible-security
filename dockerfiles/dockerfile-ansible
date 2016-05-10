@@ -3,7 +3,7 @@ MAINTAINER Tim Kropp @sometheycallme
 
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
-      ansible-2.0.1.0-r1 \
+      ansible=2.0.1.0-r1 \
       python
 
 WORKDIR /opt/ansible
