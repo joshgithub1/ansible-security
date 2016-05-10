@@ -31,6 +31,6 @@ deployment:
     owner: cleanerbot
     commands:
       - docker login -e ${mail} -u ${user} -p ${pass}
-      - docker tag sometheycallme/ansible-security:latest cleanerbot/ansible-security
+      - docker tag sometheycallme/ansible-security:latest sometheycallme/ansible-controller:latest
       - docker push sometheycallme/ansible-controller:latest
       - docker logout
