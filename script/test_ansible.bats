@@ -2,7 +2,7 @@
 
 load options
 
-@test "ansible is installed >=2.0" {
+@test "ansible is installed ~=1.9" {
   run docker run -rm --read-only sometheycallme/ansible-security --version
-  [[ ${output} = 2 ]]
+  [[ ${output} = 1.9 ]]
 }
