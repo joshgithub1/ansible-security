@@ -5,3 +5,8 @@ RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
       ansible \
       python
+
+WORKDIR /opt/ansible
+
+ENTRYPOINT ["ansible"]
+CMD ["ansible --version"]

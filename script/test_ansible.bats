@@ -2,7 +2,7 @@
 
 load options
 
-@test "python version is < 3" {
-  run docker run -rm --read-only cleanerbot/ansible-security --python -V
+@test "ansible version is >= 2" {
+  run docker run -rm --read-only cleanerbot/ansible-security
   [[ ${output} =~ 2 ]]
 }
