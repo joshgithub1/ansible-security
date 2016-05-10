@@ -3,7 +3,7 @@ MAINTAINER Tim Kropp @sometheycallme
 
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
-      python-yaml \
+      python \
       python-pip \
       && pip install paramiko \
       && apk del --purge py-pip py-setuptools
