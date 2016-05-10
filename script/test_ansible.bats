@@ -2,7 +2,7 @@
 
 load options
 
-@test "ansible version is >= 2" {
-  run docker run -rm --read-only cleanerbot/ansible-security
-  [[ ${output} =~ 2 ]]
+@test "ansible is installed" {
+  run docker run -rm --read-only sometheycallme/ansible-security --version
+  [[ ${output} = ansible ]]
 }
