@@ -5,12 +5,11 @@ all: runtime
 
 .PHONY: clean
 clean:
-	docker rmi -f sometheycallme/ansible-security || :
+	script/clean
 
 .PHONY: runtime
 runtime:
-	docker build -f dockerfiles/dockerfile-ansible --rm -t sometheycallme/ansible-security .
-	docker images | grep ansible-security
+	script/build
 
 .PHONY: test
 test:
