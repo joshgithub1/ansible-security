@@ -3,6 +3,6 @@
 load options
 
 @test "ansible 2.x is installed" {
-  run docker run --rm --read-only ${IMAGE_NAME_TAG} --version
+  run docker run --rm --read-only ${LOCAL_IMAGE} --version
   [[ ${output} =~ ansible\ 2\. ]]
 }
