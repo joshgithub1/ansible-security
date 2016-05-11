@@ -6,4 +6,4 @@ echo "Step1: Test for basic ansible install"
 docker run --volumens-from playbooks-data:latest -t -i --entrypoint bash ${LOCAL_IMAGE} -c "ls /opt/ansible" | grep ansible
 
 echo "Step2: Test for fixtures volume"
-docker run --volumens-from playbooks-data:latest -t -i --entrypoint bash ${LOCAL_IMAGE} -c "ls /etc/ansible" | grep test
+docker run --volumes-from playbooks-data:latest -t -i --entrypoint bash ${LOCAL_IMAGE} -c "ls /etc/ansible" | grep test
