@@ -3,8 +3,12 @@ MAINTAINER Tim Kropp @sometheycallme
 
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
-      ansible \
-      python
+      python \
+      && \
+    apk add --no-cache -X 'http://dl-cdn.alpinelinux.org/alpine/edge/main' \
+      'ansible>=2.0' \
+      && \
+    :
 
 WORKDIR /opt/ansible
 

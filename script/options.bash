@@ -5,3 +5,5 @@ if [[ -n ${CIRCLECI} ]]; then
 else
   CAPS='--cap-drop all'
 fi
+
+IMAGE_NAME_TAG="sometheycallme/ansible-security:latest"

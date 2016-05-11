@@ -1,5 +1,6 @@
 #!/bin/bash
 set -ex -o pipefail
+. script/options.bash
 
 echo "Step1: Test for basic ansible install"
-docker run -t -i --entrypoint bash cleanerbot/ansible-security -c "ls /opt/ansible" | grep ansible
+docker run -t -i --entrypoint bash ${IMAGE_NAME_TAG} -c "ls /opt/ansible" | grep ansible
