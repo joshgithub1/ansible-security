@@ -3,4 +3,7 @@ set -ex -o pipefail
 . script/options.bash
 
 echo "Step1: Test for basic ansible install"
-docker run -t -i --entrypoint bash ${LOCAL_IMAGE} -c "ls /opt/ansible" | grep ansible
+docker run --volumens-from playbooks-data:latest -t -i --entrypoint bash ${LOCAL_IMAGE} -c "ls /opt/ansible" | grep ansible
+
+echo "Step2: Test for fixtures volume"
+docker run --volumes-from playbooks-data:latest -t -i --entrypoint bash ${LOCAL_IMAGE} -c "ls /etc/ansible" | grep test
