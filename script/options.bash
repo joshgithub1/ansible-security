@@ -6,5 +6,5 @@ else
   CAPS='--cap-drop all'
 fi
 
-IMAGE_NAME_TAG="sometheycallme/ansible-security:latest"
+LOCAL_IMAGE="sometheycallme/ansible-security:latest"
 PUBLISHED_IMAGE="sometheycallme/ansible-controller:latest"

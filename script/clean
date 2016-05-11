@@ -2,4 +2,4 @@
 
 . script/options.bash
 
-docker rmi -f ${IMAGE_NAME_TAG} || :
+docker rmi -f ${LOCAL_IMAGE} || :
