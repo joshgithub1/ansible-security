@@ -4,6 +4,6 @@ set -e
 . script/options.bash
 
 docker login -e ${mail} -u ${user} -p ${pass}
-docker tag ${IMAGE_NAME_TAG} sometheycallme/ansible-controller:latest
-docker push sometheycallme/ansible-controller:latest
+docker tag ${IMAGE_NAME_TAG} ${PUBLISHED_IMAGE}
+docker push ${PUBLISHED_IMAGE}
 docker logout

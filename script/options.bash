@@ -7,3 +7,4 @@ else
 fi
 
 IMAGE_NAME_TAG="sometheycallme/ansible-security:latest"
+PUBLISHED_IMAGE="sometheycallme/ansible-controller:latest"
