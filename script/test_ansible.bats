@@ -2,7 +2,7 @@
 
 load options
 
-@test "ansible is installed ~=1.9" {
+@test "ansible 2.x is installed" {
   run docker run --rm --read-only ${IMAGE_NAME_TAG} --version
-  [[ ${output} =~ 1.9 ]]
+  [[ ${output} =~ ansible\ 2\. ]]
 }
