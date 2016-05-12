@@ -4,9 +4,12 @@ MAINTAINER Tim Kropp @sometheycallme
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
       python \
+      py-pip \
       && \
     apk add --no-cache -X 'http://dl-cdn.alpinelinux.org/alpine/edge/main' \
       'ansible>=2.0' \
+      && pip install --upgrade pip \
+      && pip install boto \
       && \
     :
 
