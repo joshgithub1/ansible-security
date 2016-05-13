@@ -15,5 +15,5 @@ RUN apk upgrade --no-cache --available && \
 
 WORKDIR /opt/ansible
 
-ENTRYPOINT ["ansible"]
-CMD ["ansible --version"]
+#ENTRYPOINT ["ansible"]
+#CMD ["ansible --version"]
