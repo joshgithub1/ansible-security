@@ -8,6 +8,6 @@ load options
 }
 
 @test "ansible playbook directory is available" {
- run docker run --volumes-from ${DATA_IMAGE} -t -i --entrypoint bash ${LOCAL_IMAGE} -c "ls -l /etc/ansible"
+ run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "ls -l /etc/ansible"
   [[ ${output} =~ total ]]
 }
