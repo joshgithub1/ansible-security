@@ -3,11 +3,11 @@
 load options
 
 @test "ansible 2.x is installed" {
-  run docker run --rm --read-only ${LOCAL_IMAGE} --version
+  run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "cd /opt/ansible; ansible --version"
   [[ ${output} =~ ansible\ 2\. ]]
 }
 
 @test "ansible playbook directory is available" {
- run docker run --volumes-from ${DATA_IMAGE} -t -i --entrypoint bash ${LOCAL_IMAGE} -c "ls /etc/ansible"
-  [[ ${output} =~ test ]]
+ run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "ls -l /etc/ansible"
+  [[ ${output} =~ total ]]
 }
