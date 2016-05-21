@@ -16,4 +16,4 @@ This project makes use of project items already created
 
 # Workflow Design
 
-[Workflow](https://github.com/cleanerbot/ansible-security/blob/master/security-automation-workflow.png)
+[Workflow](https://raw.githubusercontent.com/cleanerbot/ansible-security/master/security-automation-workflow.png)
