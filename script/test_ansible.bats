@@ -13,7 +13,7 @@ load options
   [[ ${output} =~ total ]]
 }
 
-@test "Captain hook path ok" {
- run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "ls -l ~/"
-  [[ ${output} =~ go ]]
+@test "Go version is installed" {
+ run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "go version"
+  [[ ${output} =~ go1.5.4]]
 }
