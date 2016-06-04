@@ -14,5 +14,6 @@ RUN apk upgrade --no-cache --available && \
       && pip install --upgrade pip \
       && pip install boto \
       && go get github.com/bketelsen/captainhook \
-
+      && \
+    :
 WORKDIR /opt/ansible
