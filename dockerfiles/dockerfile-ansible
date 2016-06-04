@@ -1,5 +1,6 @@
 FROM alpine:3.3
 MAINTAINER Tim Kropp @sometheycallme
+ENV GOPATH=$HOME/go
 
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
@@ -13,6 +14,5 @@ RUN apk upgrade --no-cache --available && \
       && pip install --upgrade pip \
       && pip install boto \
       && go get github.com/bketelsen/captainhook \
-    :
-ENV GOPATH=$HOME/go
+
 WORKDIR /opt/ansible
