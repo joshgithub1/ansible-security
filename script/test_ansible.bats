@@ -13,7 +13,12 @@ load options
   [[ ${output} =~ total ]]
 }
 
-@test "Go version is installed" {
+@test "Go version 1.5.4 is installed" {
  run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "go version"
   [[ ${output} =~ go1.5.4 ]]
+}
+
+@test "Captain hook is listening on 8080" {
+ run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "netstat -an | grep 8080"
+  [[ ${output} =~ 8080 ]]
 }
