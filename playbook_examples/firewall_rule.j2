@@ -1,0 +1,3 @@
+{% for rule in rules %}
+id {{ rule.id }} {{ rule.action }} from {{ rule.source }} to {{ rule.dest }} {% if rule.log %} log {% endif %}
+{%- endfor %}
