@@ -9,7 +9,6 @@ RUN apk upgrade --no-cache --available && \
       bash \
       git \
       go \
-      iproute2 \ 
       && \
     apk add --no-cache -X 'http://dl-cdn.alpinelinux.org/alpine/edge/main' \
       'ansible>=2.0' \
