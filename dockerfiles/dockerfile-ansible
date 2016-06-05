@@ -23,6 +23,15 @@ RUN apk upgrade --no-cache --available && \
       && cd /
       && mkdir /opt/captainhook \
       && captainhook -configdir /opt/captainhook \
+      && \
+      && \
+      && \
+      && \
+      && \
+      && \
+      && \
+      && \
+      && \
     :
 
 
