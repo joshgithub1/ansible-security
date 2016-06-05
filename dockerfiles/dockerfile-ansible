@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:3.4
 MAINTAINER Tim Kropp @sometheycallme
 ENV GOPATH=$HOME/go
 
@@ -9,12 +9,23 @@ RUN apk upgrade --no-cache --available && \
       bash \
       git \
       go \
+      iproute2 
       && \
     apk add --no-cache -X 'http://dl-cdn.alpinelinux.org/alpine/edge/main' \
       'ansible>=2.0' \
       && pip install --upgrade pip \
       && pip install boto \
+      && cd /go
       && go get github.com/bketelsen/captainhook \
-      && \
+      && cd /go/src/github.com/bketelsen
+      && git clone git@github.com:bketelsen/captainhook.git
+      && go build .
+      && cd /
+      && mkdir /opt/captainhook \
+      && captainhook -configdir /opt/captainhook \
     :
+
+
 WORKDIR /opt/ansible
+
+EXPOSE 8080
