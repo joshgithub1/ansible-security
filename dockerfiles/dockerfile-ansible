@@ -17,24 +17,7 @@ RUN apk upgrade --no-cache --available && \
       && pip install boto \
       && cd /go
       && go get github.com/bketelsen/captainhook \
-      && cd /go/src/github.com/bketelsen
-      && git clone git@github.com:bketelsen/captainhook.git
-      && go build .
-      && cd /
-      && mkdir /opt/captainhook \
-      && captainhook -configdir /opt/captainhook \
-      && \
-      && \
-      && \
-      && \
-      && \
-      && \
-      && \
-      && \
       && \
     :
-
-
 WORKDIR /opt/ansible
-
 EXPOSE 8080
