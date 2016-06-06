@@ -18,3 +18,7 @@ load options
   [[ ${output} =~ go1.6\. ]]
 }
 
+@test "Autostager is installed in it's container" {
+ run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "pip list | grep autostager"
+  [[ ${output} =~ autostager ]]
+}
