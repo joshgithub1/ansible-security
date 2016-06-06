@@ -18,7 +18,3 @@ load options
   [[ ${output} =~ go1.5.4 ]]
 }
 
-@test "Captain hook is listening on 8080" {
- run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "ss -ptl | grep 8080"
-  [[ ${output} =~ *:8080 ]]
-}
