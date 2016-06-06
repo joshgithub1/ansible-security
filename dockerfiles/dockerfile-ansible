@@ -14,7 +14,6 @@ RUN apk upgrade --no-cache --available && \
       'ansible>=2.0' \
       && pip install --upgrade pip \
       && pip install boto \
-      && cd /go
       && go get github.com/bketelsen/captainhook \
       && \
     :
