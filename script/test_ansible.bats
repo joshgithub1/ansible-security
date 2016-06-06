@@ -13,8 +13,8 @@ load options
   [[ ${output} =~ total ]]
 }
 
-@test "Go version 1.5.x is installed" {
+@test "Go version 1.6.x is installed" {
  run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "go version"
-  [[ ${output} =~ go1.5\. ]]
+  [[ ${output} =~ go1.6\. ]]
 }
 
