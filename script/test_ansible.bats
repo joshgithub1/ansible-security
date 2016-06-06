@@ -19,6 +19,6 @@ load options
 }
 
 @test "Autostager is installed in it's container" {
- run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "pip list | grep autostager"
+ run docker run --volumes-from playbooks-data -t -i --entrypoint bash autostager -c "pip list | grep autostager"
   [[ ${output} =~ autostager ]]
 }
