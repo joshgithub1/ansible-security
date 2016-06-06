@@ -12,6 +12,9 @@ docker build -f fixtures/Dockerfile -t ${DATA_IMAGE} .
 echo "Building the Ansible Control image"
 docker build $options -f dockerfiles/dockerfile-ansible -t ${LOCAL_IMAGE} .
 
+echo "Building the Autostager image"
+docker build $options -f dockerfiles/dockerfile-autostager -t autostager .
+
 echo "Creating the volume image" 
 docker create --name playbooks-data playbooks-data true
 
