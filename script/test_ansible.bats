@@ -12,3 +12,9 @@ load options
  run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "ls -l /etc/ansible"
   [[ ${output} =~ total ]]
 }
+
+@test "Go version 1.6.x is installed" {
+ run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "go version"
+  [[ ${output} =~ go1.6\. ]]
+}
+

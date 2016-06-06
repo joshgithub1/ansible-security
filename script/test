@@ -7,3 +7,9 @@ docker run --volumens-from playbooks-data:latest -t -i --entrypoint bash ${LOCAL
 
 echo "Step2: Test for fixtures volume"
 docker run --volumes-from playbooks-data:latest -t -i --entrypoint bash ${LOCAL_IMAGE} -c "ls /etc/ansible" | grep test
+
+echo "Step3: Test for go"
+docker run --volumes-from playbooks-data:latest -t -i --entrypoint bash ${LOCAL_IMAGE} -c "ls ~/go"
+
+echo "Step 4: Test for 8080 listener"
+docker run --volumes-from playbooks-data:latest -t -i --entrypoint bash ${LOCAL_IMAGE} -c "netstat -an | grep 8080"

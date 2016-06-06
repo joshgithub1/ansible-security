@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:3.4
 MAINTAINER Tim Kropp @sometheycallme
 ENV GOPATH=$HOME/go
 
@@ -18,3 +18,4 @@ RUN apk upgrade --no-cache --available && \
       && \
     :
 WORKDIR /opt/ansible
+EXPOSE 8080
