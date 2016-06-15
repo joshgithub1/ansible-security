@@ -23,3 +23,13 @@ load options
  run docker run --volumes-from playbooks-data -t -i --entrypoint bash autostager -c "pip list | grep autostager"
   [[ ${output} =~ autostager ]]
 }
+
+@test "ansible-controller: captainhook is in path" {
+ run docker run  -t -i --entrypoint bash ansible-security -c "command -v captainhook"
+ [[ ${output} =~ /usr/bin/captainhook ]]
+}
+
+@test "ansible-controller: captainhook is executable" {
+ run docker run  -t -i --entrypoint captainhook ansible-security --help
+ [[ ${output} =~ Usage ]]
+}
