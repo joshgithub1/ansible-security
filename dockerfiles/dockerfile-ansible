@@ -21,3 +21,5 @@ RUN apk upgrade --no-cache --available && \
     :
 WORKDIR /opt/ansible
 EXPOSE 8080
+ENTRYPOINT ["captainhook"]
+CMD ["-echo", "-configdir", "/etc/captainhook", "-listen-addr", "0.0.0.0:8080", "-enable-proxy"]

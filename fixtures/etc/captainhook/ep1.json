@@ -1,0 +1,10 @@
+{
+  "scripts": [
+    {
+      "command": "echo",
+      "args": [
+        "hello"
+      ]
+    }
+  ]
+}
