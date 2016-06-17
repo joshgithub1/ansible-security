@@ -13,4 +13,6 @@ runtime:
 
 .PHONY: test
 test:
+	docker rm -f playbooks-data &> /dev/null || :
+	docker create --name playbooks-data playbooks-data true
 	bats script/test_*.bats

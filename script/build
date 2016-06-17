@@ -15,9 +15,6 @@ docker build $options -f dockerfiles/dockerfile-ansible -t ${LOCAL_IMAGE} .
 echo "Building the Autostager image"
 docker build $options -f dockerfiles/dockerfile-autostager -t autostager .
 
-echo "Creating the volume image" 
-docker create --name playbooks-data playbooks-data true
-
 echo "Show image sizes."
 docker images | grep ansible-security | sort
 
