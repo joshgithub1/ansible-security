@@ -50,15 +50,15 @@ load options
 }
 
 @test "ansible-controller: captainhook testplaybook passed to ansible" {
- docker run  -d --name=hooktest -P --volumes-from playbooks-data ansible-security
+ docker run  -d --name=playtest -P --volumes-from playbooks-data ansible-security
  if [[ x$DOCKER_HOST = x ]]; then
    # use local network namespace
-   ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' hooktest)
+   ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' playtest)
    port=8080
  else
    # accomodate remote docker execution.
    ip=$(echo ${DOCKER_HOST} | awk -F/ '{print $NF}' | cut -d: -f0)
-   port=$(docker port hooktest | awk -F: '{print $NF}')
+   port=$(docker port playtest | awk -F: '{print $NF}')
  fi
  run curl --stderr - -X POST http://${ip}:${port}/play_test
  [[ ${output} =~ PLAY ]]
