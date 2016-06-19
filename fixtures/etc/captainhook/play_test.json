@@ -1,0 +1,10 @@
+{
+  "scripts": [
+    {
+      "command": "/opt/ansible/ansible-playbook",
+      "args": [
+        "/etc/ansible/play_test.yml"
+      ]
+    }
+  ]
+}
