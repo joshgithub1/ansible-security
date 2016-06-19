@@ -61,5 +61,5 @@ load options
    port=$(docker port hooktest | awk -F: '{print $NF}')
  fi
  run curl --stderr - -X POST http://${ip}:${port}/play_test
- [[ ${output} =~ hello ]]
+ [[ ${output} =~ PLAY ]]
 }
