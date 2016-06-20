@@ -4,6 +4,7 @@ MAINTAINER Tim Kropp @sometheycallme
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
       python \
+      python-dev \
       gcc \
       py-pip \
       bash \
