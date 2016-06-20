@@ -4,7 +4,12 @@ MAINTAINER Tim Kropp @sometheycallme
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
       python \
+      gcc \
+      py-pip \
       bash \
       git \
+      && pip install --upgrade pip \
+      && pip install setuptools \
+      && pip install autostager \
       && \
     :
