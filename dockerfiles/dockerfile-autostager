@@ -7,6 +7,7 @@ RUN apk upgrade --no-cache --available && \
       python-dev \
       gcc \
       py-pip \
+      musl-dev \
       bash \
       git \
       && pip install --upgrade pip \
