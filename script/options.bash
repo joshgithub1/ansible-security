@@ -8,4 +8,5 @@ fi
 
 DATA_IMAGE="playbooks-data:latest"
 LOCAL_IMAGE="ansible-security:latest"
+AUTOSTAGER_IMAGE="autostager:latest"
 PUBLISHED_IMAGE="sometheycallme/ansible-controller:latest"

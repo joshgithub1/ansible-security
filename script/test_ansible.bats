@@ -2,7 +2,7 @@
 
 load options
 
-# note: BATS does not respect this syntax: ${DATA_IMAGEi}
+# note: BATS does not respect this syntax: ${DATA_IMAGE}
 
 @test "ansible-controller: Ansible 2.x is installed" {
   run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "cd /opt/ansible; ansible --version"
