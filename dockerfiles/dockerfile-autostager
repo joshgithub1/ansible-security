@@ -5,13 +5,12 @@ RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
       python \
       python-dev \
-      gcc \
       py-pip \
       musl-dev \
+      libffi-dev \
       bash \
       git \
       && pip install --upgrade pip \
-      && pip install setuptools \
       && pip install autostager \
       && \
     :
