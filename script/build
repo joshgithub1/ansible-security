@@ -13,10 +13,13 @@ echo "Building the Ansible Control image"
 docker build $options -f dockerfiles/dockerfile-ansible -t ${LOCAL_IMAGE} .
 
 echo "Building the Autostager image"
-docker build $options -f dockerfiles/dockerfile-autostager -t autostager .
+docker build $options -f dockerfiles/dockerfile-autostager -t ${AUTOSTAGER_IMAGE} .
 
-echo "Show image sizes."
+echo "Show Ansible image sizes."
 docker images | grep ansible-security | sort
+
+echo "Show Autostager image sizes."
+docker images | grep autostager | sort
 
 echo "Show all docker images"
 docker images

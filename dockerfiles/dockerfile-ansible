@@ -8,6 +8,7 @@ RUN apk upgrade --no-cache --available && \
       py-pip \
       bash \
       git \
+      curl \
       go \
       && \
     apk add --no-cache -X 'http://dl-cdn.alpinelinux.org/alpine/edge/main' \

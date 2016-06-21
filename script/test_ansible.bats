@@ -2,7 +2,7 @@
 
 load options
 
-# note: BATS does not respect this syntax: ${DATA_IMAGEi}
+# note: BATS does not respect this syntax: ${DATA_IMAGE}
 
 @test "ansible-controller: Ansible 2.x is installed" {
   run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "cd /opt/ansible; ansible --version"
@@ -47,4 +47,19 @@ load options
  fi
  run curl --stderr - -X POST http://${ip}:${port}/ep1
  [[ ${output} =~ hello ]]
+}
+
+@test "ansible-controller: captainhook testplaybook passed to ansible" {
+ docker run  -d --name=playtest -P --volumes-from playbooks-data ansible-security
+ if [[ x$DOCKER_HOST = x ]]; then
+   # use local network namespace
+   ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' playtest)
+   port=8080
+ else
+   # accomodate remote docker execution.
+   ip=$(echo ${DOCKER_HOST} | awk -F/ '{print $NF}' | cut -d: -f0)
+   port=$(docker port playtest | awk -F: '{print $NF}')
+ fi
+ run curl --stderr - -X POST http://${ip}:${port}/play_test
+ [[ ${output} =~ PLAY ]]
 }
