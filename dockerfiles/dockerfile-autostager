@@ -5,14 +5,16 @@ RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
       python \
       python-dev \
+      py-pip \ 	
       gcc \
-      py-pip \
       musl-dev \
       libffi-dev \
       openssl-dev \
       bash \
       git \
-      && pip install --upgrade pip \
-      && pip install autostager \
+      && git clone https://github.com/jfach/autostager \
+      && pip install --upgrade pip
+      && pip install --pre github3.py
+      && python setup.py autostager/setup.py
       && \
     :
