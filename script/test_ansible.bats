@@ -14,11 +14,6 @@ load options
   [[ ${output} =~ total ]]
 }
 
-@test "ansible-controller: Go v1.6.x is installed" {
- run docker run --volumes-from playbooks-data -t -i --entrypoint bash ansible-security -c "go version"
-  [[ ${output} =~ go1.6\. ]]
-}
-
 @test "autostager: latest version is installed" {
  run docker run --volumes-from playbooks-data -t -i --entrypoint bash autostager -c "pip list | grep autostager"
   [[ ${output} =~ autostager ]]
