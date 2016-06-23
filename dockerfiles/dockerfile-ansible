@@ -9,18 +9,13 @@ RUN apk upgrade --no-cache --available && \
       bash \
       git \
       curl \
-      go \
       && \
     apk add --no-cache -X 'http://dl-cdn.alpinelinux.org/alpine/edge/main' \
       'ansible>=2.0' \
       && pip install --upgrade pip \
       && pip install boto \
-      && go get github.com/bketelsen/captainhook \
-      && cp -f $GOPATH/bin/captainhook /usr/bin/ \
-      && rm -fr $GOPATH \
       && \
     :
 WORKDIR /opt/ansible
 EXPOSE 8080
-ENTRYPOINT ["captainhook"]
-CMD ["-echo", "-configdir", "/etc/captainhook", "-listen-addr", "0.0.0.0:8080", "-enable-proxy"]
+# CMD ["-echo", "-configdir", "/etc/captainhook", "-listen-addr", "0.0.0.0:8080", "-enable-proxy"]
