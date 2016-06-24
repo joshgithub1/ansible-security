@@ -6,6 +6,24 @@ import json
 import os
 import re
 
+
+playbook_whitelist = {
+	     	      '-v': False,
+		      '-i': True,
+		      '-M': True,
+		      '-e': True,
+		      '-f': True,
+		      '-k': False,
+		      '-K': False,
+		      '-U': True,
+		      '-T': True,
+		      '-s': False,
+		      '-u': True,
+		      '-c': True,
+		      '-l': True
+		     }
+		     
+
 class RequestHandler(BaseHTTPRequestHandler):
         
     def alphafy(self, a_string):
@@ -31,6 +49,16 @@ class RequestHandler(BaseHTTPRequestHandler):
 		return
 	    flags = post_data['flags']
 	    print flags
+	    for flag in flags:
+	    	print flag
+	    for flag in flags:
+	    	if flag['flag'] not in playbook_whitelist.keys():
+		    self.send_response(400, "invalid flag")
+		    return
+		if playbook_whitelist[flag['flag']] and not flag['argument']:
+		    self.send_response(400, "provided argument to non argument flag")
+		    print flag['argument']
+		    return
 	    directory = post_data['git_handle'] + '/' + post_data['branch_name']
 	    safe_dir = self.alphafy(directory)
 	    print safe_dir
