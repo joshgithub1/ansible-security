@@ -2,6 +2,8 @@ FROM alpine:3.4
 MAINTAINER Tim Kropp @sometheycallme
 ENV GOPATH=$HOME/go
 
+COPY /webserver /opt/ansible/webserver
+
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
       python \
@@ -18,4 +20,4 @@ RUN apk upgrade --no-cache --available && \
     :
 WORKDIR /opt/ansible
 EXPOSE 8080
-# CMD ["-echo", "-configdir", "/etc/captainhook", "-listen-addr", "0.0.0.0:8080", "-enable-proxy"]
+# CMD ["-ecddho", "-configdir", "/etc/captainhook", "-listen-addr", "0.0.0.0:8080", "-enable-proxy"]
