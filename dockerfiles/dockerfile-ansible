@@ -20,4 +20,5 @@ RUN apk upgrade --no-cache --available && \
     :
 WORKDIR /opt/ansible
 EXPOSE 8080
+ENTRYPOINT ["python", "webserver/server.py"]
 # CMD ["-ecddho", "-configdir", "/etc/captainhook", "-listen-addr", "0.0.0.0:8080", "-enable-proxy"]
