@@ -1,5 +1,6 @@
 #!/bin/bash
 
 . script/options.bash
+sh ../helpful_files/cleanupdocker.sh
 
-docker rmi -f ${LOCAL_IMAGE} || :
+#docker rmi -f ${LOCAL_IMAGE} || :
