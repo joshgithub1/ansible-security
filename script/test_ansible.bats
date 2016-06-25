@@ -32,5 +32,5 @@ load options
 fi
 
 run curl -X POST -d '{"branch_name": "testplaybook", "git_handle": "sometheycallme", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "/playbooks/gitclone/clone-repo.yml"}' http://${ip}:${port}/play
-[[ ${output} =~ connected ]]
+  [[ ${lines[2]} =~ connected ]]
 }
