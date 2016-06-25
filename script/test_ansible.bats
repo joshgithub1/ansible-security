@@ -16,5 +16,5 @@ load options
 
 @test "autostager: autostager is in path" {
  run docker run --volumes-from $DATA_IMAGE:rw -t -i --entrypoint bash $AUTOSTAGER_IMAGE -c "ls -l /autostager"
-  [[ ${output} =~ autostager.py ]]
+  [[ ${output} =~ autostager ]]
 }
