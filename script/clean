@@ -2,4 +2,13 @@
 
 . script/options.bash
 
-docker rmi -f ${LOCAL_IMAGE} || :
+#!/bin/bash
+
+set -o errexit
+
+docker ps -a
+docker images
+
+echo "==========================================="
+echo "List images and PIDS                       "
+echo "==========================================="
