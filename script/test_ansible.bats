@@ -20,7 +20,7 @@ load options
 }
 
 @test "ansible-controller: webserver is in path and responding to webhooks" {
- run docker run -d --name=webtest -p 8080:8080 --volumes-from $DATA_IMAGE:ro $ANSIBLE_CONTROLLER
+ run docker run -d --name=webtest -p 8080:8080 --volumes-from staging-data:ro ansible-controller
  if [[ x$DOCKER_HOST = x ]]; then
  # use local network namespace
    ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' webtest)
