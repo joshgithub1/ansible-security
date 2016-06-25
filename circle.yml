@@ -20,11 +20,9 @@ dependencies:
     - docker version
     - make all
 
-clean:
-  override:
-    - make clean
 test:
   override:
+    - make clean
     - make test
 
 # https://circleci.com/docs/environment-variables
