@@ -9,6 +9,9 @@ set -o errexit
 rmf="docker rm -f"
 rmi="docker rmi -f"
 
+docker ps -a
+docker images
+
 echo "========================================="
 echo "autostager and ansible runnnin containers"
 echo "if there are no PIDS - it's cleaned "
