@@ -3,13 +3,7 @@ set -ex -o pipefail
 . script/options.bash
 
 echo "Step1: Test for basic ansible install"
-docker run --volumes-from playbooks-data:latest -t -i --entrypoint bash ${LOCAL_IMAGE} -c "ls /opt/ansible" | grep ansible
+docker run --volumes-from ${DATA_IMAGE} -t -i --entrypoint bash ${CONTROLLER_IMAGE} -c "ls /opt/ansible" | grep ansible
 
 echo "Step2: Test for fixtures volume"
-docker run --volumes-from playbooks-data:latest -t -i --entrypoint bash ${LOCAL_IMAGE} -c "ls /etc/ansible" | grep test
-
-echo "Step3: Test for go"
-docker run --volumes-from playbooks-data:latest -t -i --entrypoint bash ${LOCAL_IMAGE} -c "ls ~/go"
-
-echo "Step 4: Test for 8080 listener"
-docker run --volumes-from playbooks-data:latest -t -i --entrypoint bash ${LOCAL_IMAGE} -c "netstat -an | grep 8080"
+docker run --volumes-from playbooks-data:latest -t -i --entrypoint bash ${CONTROLLER_IMAGE} -c "ls /opt" | grep staging

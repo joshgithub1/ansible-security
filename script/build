@@ -6,11 +6,11 @@ set -e
 options="--rm"
 echo $@ | grep '\--no-cache' &> /dev/null && options="$options --no-cache" || :
 
-echo "Building the Playbook Data image"
-docker build -f fixtures/Dockerfile -t ${DATA_IMAGE} .
+echo "Creating Staging Data volume"
+docker create -v /opt/staging --name ${DATA_IMAGE} alpine true
 
-echo "Building the Ansible Control image"
-docker build $options -f dockerfiles/dockerfile-ansible -t ${LOCAL_IMAGE} .
+echo "Building the Ansible Controller image"
+docker build $options -f dockerfiles/dockerfile-ansible -t ${CONTROLLER_IMAGE} .
 
 echo "Building the Autostager image"
 docker build $options -f dockerfiles/dockerfile-autostager -t ${AUTOSTAGER_IMAGE} .
@@ -25,5 +25,5 @@ echo "Show all docker images"
 docker images
 
 echo
-echo "WARN: you should docker tag the ansible control host image."
+echo "WARN: you should docker tag the images."
 echo
