@@ -6,7 +6,7 @@ else
   CAPS='--cap-drop all'
 fi
 
-DATA_IMAGE="playbooks-data:latest"
-LOCAL_IMAGE="ansible-security:latest"
+DATA_IMAGE="staging-data"
+CONTROLLER_IMAGE="ansible-controller:latest"
 AUTOSTAGER_IMAGE="autostager:latest"
 PUBLISHED_IMAGE="sometheycallme/ansible-controller:latest"
