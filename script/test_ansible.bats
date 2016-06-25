@@ -18,3 +18,19 @@ load options
  run docker run --volumes-from $DATA_IMAGE:rw -t -i --entrypoint bash $AUTOSTAGER_IMAGE -c "ls -l /autostager"
   [[ ${output} =~ autostager ]]
 }
+
+@test "ansible-controller: webserver is in path and responding to webhooks" {
+ run docker run --volumes-from $DATA_IMAGE:ro -p 8080:8080 -d ansible-controller
+ if [[ x$DOCKER_HOST = x ]]; then
+ # use local network namespace
+   ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' hooktest)
+   port=8080
+ else
+ # accomodate remote docker execution.
+   ip=$(echo ${DOCKER_HOST} | awk -F/ '{print $NF}' | cut -d: -f0)
+   port=$(docker port hooktest | awk -F: '{print $NF}')
+fi
+
+run curl -X POST -d '{"branch_name": "testplaybook", "git_handle": "sometheycallme", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "/playbooks/gitclone/clone-repo.yml"}' http://${ip}:${port}/play
+[[ ${output} =~ play ]]
+}
