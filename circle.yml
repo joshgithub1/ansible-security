@@ -22,9 +22,8 @@ dependencies:
 
 test:
   override:
-    - make clean
     - make test
-
+    - make clean
 # https://circleci.com/docs/environment-variables
 deployment:
   master:
