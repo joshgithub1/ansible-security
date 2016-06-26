@@ -22,7 +22,6 @@ dependencies:
 
 test:
   override:
-    - docker rm -f webtest &> /dev/null || :
     - make test
     - make clean
 # https://circleci.com/docs/environment-variables
