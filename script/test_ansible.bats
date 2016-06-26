@@ -4,19 +4,19 @@ load options
 
 # note: BATS does not respect this syntax: ${DATA_IMAGE}
 
-@test "ansible-controller: Ansible 2.x is installed" {
+@test "ansible-controller: Ansible 2.x is installed and running" {
   run docker run --volumes-from $DATA_IMAGE:ro -t -i --entrypoint bash $CONTROLLER_IMAGE -c "cd /opt/ansible; ansible --version"
   [[ ${output} =~ ansible\ 2\. ]]
 }
 
-@test "ansible-controller: staging directory is in path" {
+@test "ansible-controller: Autostager staging directory for contributor branches is in path" {
  run docker run --volumes-from $DATA_IMAGE:ro -t -i --entrypoint bash $CONTROLLER_IMAGE -c "ls -l /opt | grep staging"
   [[ ${output} =~ staging ]]
 }
 
-@test "autostager: autostager is in path" {
- run docker run --volumes-from $DATA_IMAGE:rw -t -i --entrypoint bash $AUTOSTAGER_IMAGE -c "ls -l /autostager"
-  [[ ${output} =~ autostager ]]
+@test "autostager: Autostager python script is in path" {
+ run docker run --volumes-from $DATA_IMAGE:rw -t -i --entrypoint bash $AUTOSTAGER_IMAGE -c "ls -l /autostager/autostager"
+  [[ ${output} =~ autostager.py ]]
 }
 
 @test "ansible-controller: webserver is in path and responding to webhooks" {
@@ -30,7 +30,10 @@ load options
    ip=$(echo ${DOCKER_HOST} | awk -F/ '{print $NF}' | cut -d: -f0)
    port=$(docker port hooktest | awk -F: '{print $NF}')
 fi
- run curl -v -X POST -d '{"branch_name": "testplaybook", "git_handle": "sometheycallme", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "/playbooks/gitclone/clone-repo.yml"}' http://${ip}:${port}/play
+ run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "/fixtures/etc/ansible/play-test.yml"}' http://${ip}:${port}/play
   
   [[ ${output} =~ About ]]
 }
+
+
+
