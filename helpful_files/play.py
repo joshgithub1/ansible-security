@@ -25,10 +25,10 @@ for arg in arguments:
     if arg.endswith('.yml'):
 	playbook = arg
 # logging
-#print "Handle: " + handle
-#print "Branch: " + branch
-#print "Playbook: " + playbook
-#print "Flags: ",  flags
+print "Handle: " + handle
+print "Branch: " + branch
+print "Playbook: " + playbook
+print "Flags: ",  flags
 
 flag_list = []
 for flag in flags:
@@ -60,6 +60,6 @@ print json_data
 # LOCAL -------
 # Send Ansible command to local Ansible controller
 # test curl_cmd locally
-curl_cmd = "ansible-playbook fixtures/etc/ansible/" + playbook
+curl_cmd = "ansible-playbook playbooks/" + playbook
 os.chdir('/home/user/ansible-security')
 os.system(curl_cmd)

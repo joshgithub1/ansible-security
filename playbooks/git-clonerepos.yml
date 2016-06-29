@@ -1,0 +1,15 @@
+---
+  - name: Clone git repos
+    hosts: localhost
+    connection: local
+    gather_facts: False
+    vars_files: 
+    - /home/user/ansible-security/vars/repolist.yml
+
+    tasks:
+    - name: Cloning repos
+      git: repo=git@github.com:/{{ item.org }}/{{ item.repo }} 
+           dest=/tmp/test/{{ item.repo }} 
+           accept_hostkey=yes
+           force=yes
+      with_items: '{{ repo_list }}'
