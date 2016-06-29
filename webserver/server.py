@@ -72,6 +72,9 @@ class RequestHandler(BaseHTTPRequestHandler):
 	    base_dir = os.environ['base_dir']
             command += " {0}/{1}/{2}".format(base_dir, safe_dir, playbook)
 	    print command
+	    # Use this to set ANSIBLE_HOSTS environmet variable as base_dir, safe_dir
+	    # root is hosts
+            os.putenv('ANSIBLE_HOSTS', "{0}/{1}/hosts".format(base_dir, safe_dir)
 	    os.system(command)
 	    self.send_response(200)
 	    return
