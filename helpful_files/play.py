@@ -48,11 +48,9 @@ data_dict = {
 # ANSIBLE_HOSTS established the project root directory
 # when using variable data in playbooks 
 os.putenv('ANSIBLE_HOSTS', '/home/user/ansible-security/hosts')
-
+json_data = json.dumps(data_dict)
 # logging
-#json_data = json.dumps(data_dict)
-#print json_data
-
+print json_data
 # When testing locally set curl command to LOCAL command
 
 # REMOTE ------- 
