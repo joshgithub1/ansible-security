@@ -4,7 +4,7 @@
     connection: local
     gather_facts: False
     vars_files: 
-    - /home/user/ansible-security/group_vars/repolist.yml
+    - "{{ inventory_dir }}/group_vars/repolist.yml"
 
     tasks:
     - name: Cloning repos
