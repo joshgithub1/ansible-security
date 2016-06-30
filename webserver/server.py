@@ -61,7 +61,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 		    return
 	    directory = post_data['git_handle'] + '/' + post_data['branch_name']
 	    safe_dir = self.alphafy(directory)
-	    path = "{0}/{1}".format(base_dir, safe_dir)
+	    path = os.path.join(base_dir, safe_dir)
 	    # Use this to set ANSIBLE_HOSTS environment variable as base_dir, safe_dir
 	    # and change into path
 	    os.putenv('ANSIBLE_HOSTS',"{0}/{1}/hosts".format(base_dir,safe_dir))
