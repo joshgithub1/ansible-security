@@ -54,12 +54,12 @@ print json_data
 # When testing locally set curl command to LOCAL command
 
 # REMOTE ------- 
-# Send curl command to controller
-# curl_cmd = "curl -v -X POST -d '{0}' {1}/play".format(json_data, ansible_controller)
+# Send curl command to controller webserver
+curl_cmd = "curl -v -X POST -d '{0}' {1}/play".format(json_data, ansible_controller)
 
 # LOCAL -------
 # Send Ansible command to local Ansible controller
 # test curl_cmd locally
-curl_cmd = "ansible-playbook playbooks/" + playbook
-os.chdir('/home/user/ansible-security')
-os.system(curl_cmd)
+#curl_cmd = "ansible-playbook playbooks/" + playbook
+#os.chdir('/home/user/ansible-security')
+#os.system(curl_cmd)
