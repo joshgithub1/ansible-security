@@ -30,7 +30,7 @@ load options
    ip=$(echo ${DOCKER_HOST} | awk -F/ '{print $NF}' | cut -d: -f0)
    port=$(docker port hooktest | awk -F: '{print $NF}')
 fi
- run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "/fixtures/etc/ansible/play-test.yml"}' http://${ip}:${port}/play
+ run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "hosts"}], "playbook": "playbooks/git-clonerepos.yml"}' http://${ip}:${port}/play
   
   [[ ${output} =~ About ]]
 }
