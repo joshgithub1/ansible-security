@@ -15,11 +15,10 @@ Specifically workflow and containers that allow safe, tested contributions to se
  
 Safe means that a contributor does not have to have access to the Ansible Controller in order to test or build configuration items through the use of the Ansible Controller.   In other words, whenever possible keep people off the controller.  Build tests and automation around use of the controller.
 
-This project makes use of project items already created
+This project makes use of the follwing images:
 
-- Docker
 - [Docker: Ansible controller](https://hub.docker.com/r/sometheycallme/ansible-controller/)
-- [Docker: Github autostager]()
+- [Docker: Github autostager](https://github.com/Jfach/autostager)
 - [Docker: Ansible webserver wrapper](https://github.com/cleanerbot/ansible-security/tree/master/webserver)
 - [Continuous Integration](https://circleci.com/gh/cleanerbot/ansible-security)
 
