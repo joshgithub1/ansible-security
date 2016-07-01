@@ -25,4 +25,4 @@ This project makes use of project items already created
 
 ### Composable Design
 
-![Workflow](https://raw.githubusercontent.com/cleanerbot/ansible-security/master/security-automation-workflow.png)
+![Workflow](https://raw.githubusercontent.com/cleanerbot/ansible-security/master/assets/security-automation-workflow.png)
