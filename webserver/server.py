@@ -61,10 +61,10 @@ class RequestHandler(BaseHTTPRequestHandler):
 		    return
 	    directory = post_data['git_handle'] + '/' + post_data['branch_name']
 	    safe_dir = self.alphafy(directory)
-	    path = "{0}/{1}".format(base_dir, safe_dir)
+	    path = os.path.join(base_dir, safe_dir)
 	    # Use this to set ANSIBLE_HOSTS environment variable as base_dir, safe_dir
 	    # and change into path
-	    os.putenv('ANSIBLE_HOSTS',"{0}/{1}/hosts".format(base_dir,safe_dir))
+	    os.putenv('ANSIBLE_HOSTS',path+'/'"hosts")
 	    os.chdir(path)
 	    # logging 
 	    print safe_dir
@@ -77,7 +77,8 @@ class RequestHandler(BaseHTTPRequestHandler):
 		    if flag['argument']:
 		    	command += " {0}".format(flag['argument'])
 	    base_dir = os.environ['base_dir']
-            command += " {0}/{1}/{2}".format(base_dir, safe_dir, playbook)
+            #create the ansible command based on json data
+	    command += " {0}/{1}/{2}".format(base_dir, safe_dir, playbook) 
 	    print command
 	    os.system(command)
 	    self.send_response(200)
