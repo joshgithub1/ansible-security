@@ -65,7 +65,6 @@ class RequestHandler(BaseHTTPRequestHandler):
 	    # Use this to set ANSIBLE_HOSTS environment variable as base_dir, safe_dir
 	    # and change into path
 	    os.putenv('ANSIBLE_HOSTS',path+'/'"hosts")
-	    #os.putenv('ANSIBLE_HOSTS',"{0}/{1}/hosts".format(base_dir,safe_dir))
 	    os.chdir(path)
 	    # logging 
 	    print safe_dir
