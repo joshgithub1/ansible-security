@@ -96,7 +96,6 @@ class RequestHandler(BaseHTTPRequestHandler):
 	    return # not implemented yet, TODO
 	    
 	    
-
 def main():
     port = 8080
     print('Listening on localhost:%s' % port)
