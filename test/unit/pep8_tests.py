@@ -14,6 +14,7 @@ class TestPep8(CleanerBotTestFixture):
             'E113',  # unexpected indentation
             'E121',  # continuation line indentation is not a multiple of four
             'E122',  # continuation line missing indentation or outdented
+            'E2',    # whitespace errors
             'E3',    # blank line errors
             'E4',    # import errors
             'E502',  # the backslash is redundant between brackets

@@ -41,7 +41,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             content_length = request_headers.getheaders('content-length')
             length = int(content_length[0]) if content_length else 0
  	    post_data = json.loads(self.rfile.read(length))
-	    #logging
+	    # logging
 	    print post_data
 	    playbook = post_data['playbook']
 	    if not playbook:
@@ -54,7 +54,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 	    # logging
 	    print flags
 	    for flag in flags:
-	    	#logging
+	    	# logging
 		print flag
 	    for flag in flags:
 	    	if flag['flag'] not in playbook_whitelist.keys():
@@ -62,7 +62,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 		    return
 		if playbook_whitelist[flag['flag']] and not flag['argument']:
 		    self.send_response(400, "provided argument to non argument flag")
-		    #logging
+		    # logging
 		    print flag['argument']
 		    return
 	    print playbook
@@ -80,20 +80,20 @@ class RequestHandler(BaseHTTPRequestHandler):
 	    # Use this to set ANSIBLE_HOSTS environment variable as base_dir, safe_dir
 	    path = os.path.join(base_dir, safe_dir)
 	    os.chdir(path)
-	    os.putenv('ANSIBLE_HOSTS',path+'/'"hosts")
+	    os.putenv('ANSIBLE_HOSTS', path + '/'"hosts")
 	    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
 	    (out, err) = proc.communicate()
-	    #logging
-	    #use os.system(command) in favor of subprocess
+	    # logging
+	    # use os.system(command) in favor of subprocess
 	    print "program output:", out
 	    print (command)
 	    print path
-            #test pass string output from proc
+            # test pass string output from proc
 	    #
-	    self.send_response=(200,out)
+	    self.send_response = (200, out)
 	    return
 	elif request_path == '/run':
-	    return # not implemented yet, TODO
+	    return  # not implemented yet, TODO
 
 
 def main():
