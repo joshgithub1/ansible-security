@@ -2,7 +2,7 @@ import json
 import os
 import sys
 
-# set ansible controller 
+# set ansible controller
 ansible_controller = None;
 
 #check if ansible controller_ip is in env_vars
@@ -46,14 +46,14 @@ data_dict = {
 
 # set environment variable ANSIBLE_HOSTS
 # ANSIBLE_HOSTS established the project root directory
-# when using variable data in playbooks 
+# when using variable data in playbooks
 os.putenv('ANSIBLE_HOSTS', '/home/user/ansible-security/hosts')
 json_data = json.dumps(data_dict)
 # logging
 print json_data
 # When testing locally set curl command to LOCAL command
 
-# REMOTE ------- 
+# REMOTE -------
 # Send curl command to controller webserver
 #curl_cmd = "curl -v -X POST -d '{0}' {1}/play".format(json_data, ansible_controller)
 

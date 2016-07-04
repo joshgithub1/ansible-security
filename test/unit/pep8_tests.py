@@ -18,6 +18,7 @@ class TestPep8(CleanerBotTestFixture):
             'E4',    # import errors
             'E502',  # the backslash is redundant between brackets
             'E9',    # runtime errors (SyntaxError, IndentationError, IOError)
+            'W2',    # whitespace warnings
             'W3',    # blank line warnings
             'W6',    # deprecated features
         ]

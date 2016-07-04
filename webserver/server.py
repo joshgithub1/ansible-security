@@ -24,16 +24,16 @@ playbook_whitelist = {
 		      '-c': True,
 		      '-l': True
 		     }
-		     
+
 
 class RequestHandler(BaseHTTPRequestHandler):
-        
+
     def alphafy(self, a_string):
 	pattern = "[^a-z0-9_]"
 	return re.sub(pattern, "_", a_string, flags=re.IGNORECASE)
 
     def do_POST(self):
-        
+
         request_path = self.path
 	# handle the play endpoint
        	if request_path == '/play':
@@ -76,7 +76,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 	    directory = post_data['git_handle'] + '/' + post_data['branch_name']
 	    base_dir = os.environ['base_dir']
 	    safe_dir = self.alphafy(directory)
-	    command += " {0}/{1}/{2}".format(base_dir, safe_dir, playbook) 
+	    command += " {0}/{1}/{2}".format(base_dir, safe_dir, playbook)
 	    # Use this to set ANSIBLE_HOSTS environment variable as base_dir, safe_dir
 	    path = os.path.join(base_dir, safe_dir)
 	    os.chdir(path)
@@ -91,23 +91,23 @@ class RequestHandler(BaseHTTPRequestHandler):
             #test pass string output from proc
 	    #
 	    self.send_response=(200,out)
-	    return		    
+	    return
 	elif request_path == '/run':
 	    return # not implemented yet, TODO
-	    
-	    
+
+
 def main():
     port = 8080
     print('Listening on localhost:%s' % port)
     server = HTTPServer(('', port), RequestHandler)
     server.serve_forever()
 
-        
+
 if __name__ == "__main__":
     parser = OptionParser()
     parser.usage = ("Creates an http-server that will echo out any GET or POST parameters\n"
                     "Run:\n\n"
                     "   reflect")
     (options, args) = parser.parse_args()
-    
+
     main()
