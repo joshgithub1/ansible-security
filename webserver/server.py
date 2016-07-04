@@ -71,10 +71,11 @@ class RequestHandler(BaseHTTPRequestHandler):
 		    command += " {0}".format(flag['flag'])
 		    if flag['argument']:
 		    	command += " {0}".format(flag['argument'])
+	    # base_dir: must add the env_var file with docker run --env-file /home/core/env_vars
 	    base_dir = os.environ['base_dir']
             #create the ansible command based on json data
-	    command += " {0}/{1}/{2}".format(base_dir, safe_dir, playbook) 
 	    safe_dir = self.alphafy(directory)
+	    command += " {0}/{1}/{2}".format(base_dir, safe_dir, playbook) 
 	    # Use this to set ANSIBLE_HOSTS environment variable as base_dir, safe_dir
 	    os.putenv('ANSIBLE_HOSTS',path+'/'"hosts")
 	    path = os.path.join(base_dir, safe_dir)
