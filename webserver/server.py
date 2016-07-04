@@ -87,7 +87,9 @@ class RequestHandler(BaseHTTPRequestHandler):
 	    print "program output:", out
 	    print (command)
 	    print path
-            self.send_response(str(out))
+            #pass string output from proc
+	    response = requests.put(self.path, data=out)
+	    self.respond(response)
 	    return		    
 	elif request_path == '/run':
 	    return # not implemented yet, TODO
