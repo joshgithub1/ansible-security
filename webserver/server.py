@@ -72,21 +72,22 @@ class RequestHandler(BaseHTTPRequestHandler):
 		    if flag['argument']:
 		    	command += " {0}".format(flag['argument'])
 	    # base_dir: must add the env_var file with docker run --env-file /home/core/env_vars
+	    directory = post_data['git_handle'] + '/' + post_data['branch_name']
 	    base_dir = os.environ['base_dir']
-            #create the ansible command based on json data
 	    safe_dir = self.alphafy(directory)
 	    command += " {0}/{1}/{2}".format(base_dir, safe_dir, playbook) 
 	    # Use this to set ANSIBLE_HOSTS environment variable as base_dir, safe_dir
-	    os.putenv('ANSIBLE_HOSTS',path+'/'"hosts")
 	    path = os.path.join(base_dir, safe_dir)
 	    os.chdir(path)
+	    os.putenv('ANSIBLE_HOSTS',path+'/'"hosts")
 	    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
 	    (out, err) = proc.communicate()
 	    #logging
+	    #os.system(command)
 	    print "program output:", out
 	    print (command)
 	    print path
-            self.send_response(200)
+            self.send_response(out)
 	    return		    
 	elif request_path == '/run':
 	    return # not implemented yet, TODO
