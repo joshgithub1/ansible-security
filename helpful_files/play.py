@@ -3,7 +3,7 @@ import os
 import sys
 
 # set ansible controller
-ansible_controller = None;
+ansible_controller = None
 
 # check if ansible controller_ip is in env_vars
 if 'controller_ip' in os.environ:
