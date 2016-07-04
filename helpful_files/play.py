@@ -20,10 +20,10 @@ branch = handle_and_branch[1]
 flags = []
 for arg in arguments:
     if arg.startswith('-'):
-    	flags.append(arg)
+        flags.append(arg)
 for arg in arguments:
     if arg.endswith('.yml'):
-	playbook = arg
+        playbook = arg
 # logging
 print "Handle: " + handle
 print "Branch: " + branch
@@ -38,11 +38,11 @@ for flag in flags:
 
 # json to be passed to webserver on controller
 data_dict = {
-	     'git_handle': handle,
-	     'branch_name': branch,
-	     'flags': flag_list,
-	     'playbook': playbook
-	     }
+         'git_handle': handle,
+         'branch_name': branch,
+         'flags': flag_list,
+         'playbook': playbook
+         }
 
 # set environment variable ANSIBLE_HOSTS
 # ANSIBLE_HOSTS established the project root directory
