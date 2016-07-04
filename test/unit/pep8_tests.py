@@ -26,6 +26,7 @@ class TestPep8(CleanerBotTestFixture):
             'W1',    # indentation warnings
             'W2',    # whitespace warnings
             'W3',    # blank line warnings
+            'W5',    # line break warnings
             'W6',    # deprecated features
         ]
 
