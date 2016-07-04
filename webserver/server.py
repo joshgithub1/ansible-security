@@ -64,11 +64,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 		    #logging
 		    print flag['argument']
 		    return
-	    # logging 
-	    print safe_dir
 	    print playbook
-	    print path
-	    #########
 	    command = "ansible-playbook"
 	    if flags:
 	    	for flag in flags:
