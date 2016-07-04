@@ -38,11 +38,11 @@ for flag in flags:
 
 # json to be passed to webserver on controller
 data_dict = {
-         'git_handle': handle,
-         'branch_name': branch,
-         'flags': flag_list,
-         'playbook': playbook
-         }
+    'git_handle': handle,
+    'branch_name': branch,
+    'flags': flag_list,
+    'playbook': playbook
+    }
 
 # set environment variable ANSIBLE_HOSTS
 # ANSIBLE_HOSTS established the project root directory

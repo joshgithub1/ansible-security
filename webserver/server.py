@@ -10,20 +10,20 @@ import subprocess
 
 
 playbook_whitelist = {
-                   '-v': False,
-              '-i': True,
-              '-M': True,
-              '-e': True,
-              '-f': True,
-              '-k': False,
-              '-K': False,
-              '-U': True,
-              '-T': True,
-              '-s': False,
-              '-u': True,
-              '-c': True,
-              '-l': True
-             }
+    '-v': False,
+    '-i': True,
+    '-M': True,
+    '-e': True,
+    '-f': True,
+    '-k': False,
+    '-K': False,
+    '-U': True,
+    '-T': True,
+    '-s': False,
+    '-u': True,
+    '-c': True,
+    '-l': True
+    }
 
 
 class RequestHandler(BaseHTTPRequestHandler):
