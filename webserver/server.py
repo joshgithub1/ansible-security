@@ -5,6 +5,7 @@ from optparse import OptionParser
 import json
 import os
 import re
+import subprocess
 
 
 playbook_whitelist = {
@@ -39,6 +40,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             content_length = request_headers.getheaders('content-length')
             length = int(content_length[0]) if content_length else 0
  	    post_data = json.loads(self.rfile.read(length))
+	    #logging
 	    print post_data
 	    playbook = post_data['playbook']
 	    if not playbook:
@@ -48,15 +50,18 @@ class RequestHandler(BaseHTTPRequestHandler):
 	    	self.send_response(400, 'bad playbook extension')
 		return
 	    flags = post_data['flags']
+	    # logging
 	    print flags
 	    for flag in flags:
-	    	print flag
+	    	#logging
+		print flag
 	    for flag in flags:
 	    	if flag['flag'] not in playbook_whitelist.keys():
 		    self.send_response(400, "invalid flag")
 		    return
 		if playbook_whitelist[flag['flag']] and not flag['argument']:
 		    self.send_response(400, "provided argument to non argument flag")
+		    #logging
 		    print flag['argument']
 		    return
 	    directory = post_data['git_handle'] + '/' + post_data['branch_name']
@@ -70,6 +75,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 	    print safe_dir
 	    print playbook
 	    print path
+	    #########
 	    command = "ansible-playbook"
 	    if flags:
 	    	for flag in flags:
@@ -79,11 +85,16 @@ class RequestHandler(BaseHTTPRequestHandler):
 	    base_dir = os.environ['base_dir']
             #create the ansible command based on json data
 	    command += " {0}/{1}/{2}".format(base_dir, safe_dir, playbook) 
+	    #logging
 	    print command
-	    os.system(command)
-	    self.send_response(200)
-	    return
-		    
+	    #os.system(command)
+	    #self.send_response(200)
+	    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+	    (out, err) = proc.communicate()
+	    #logging
+	    print "program output:", out
+            self.send_response(200)
+	    return		    
 	elif request_path == '/run':
 	    return # not implemented yet, TODO
 	    
