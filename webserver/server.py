@@ -23,7 +23,7 @@ playbook_whitelist = {
     '-u': True,
     '-c': True,
     '-l': True
-    }
+}
 
 
 class RequestHandler(BaseHTTPRequestHandler):
@@ -94,7 +94,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         print "program output:", out
         print (command)
         print path
-            # test pass string output from proc
+        # test pass string output from proc
         #
         self.send_response = (200, out)
         return

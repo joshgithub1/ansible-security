@@ -10,13 +10,7 @@ class TestPep8(CleanerBotTestFixture):
     def test_conformance(self):
         # http://pep8.readthedocs.org/en/latest/intro.html#error-codes
         tests = [
-            'E101',  # indentation contains mixed spaces and tabs
-            'E111',  # indentation is not a multiple of four
-            'E112',  # expected an indented block
-            'E113',  # unexpected indentation
-            'E121',  # continuation line indentation is not a multiple of four
-            'E122',  # continuation line missing indentation or outdented
-            'E126',  # continuation line over-indented for hanging indent
+            'E1',    # indentation
             'E2',    # whitespace errors
             'E3',    # blank line errors
             'E4',    # import errors

@@ -42,7 +42,7 @@ data_dict = {
     'branch_name': branch,
     'flags': flag_list,
     'playbook': playbook
-    }
+}
 
 # set environment variable ANSIBLE_HOSTS
 # ANSIBLE_HOSTS established the project root directory
