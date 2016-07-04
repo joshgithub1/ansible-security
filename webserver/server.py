@@ -83,7 +83,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 	    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
 	    (out, err) = proc.communicate()
 	    #logging
-	    #os.system(command)
+	    #use os.system(command) in favor of subprocess
 	    print "program output:", out
 	    print (command)
 	    print path
