@@ -37,9 +37,9 @@ class RequestHandler(BaseHTTPRequestHandler):
 
         # handle the play endpoint
         if request_path == '/play':
-            self.play
+            self.play()
         elif request_path == '/run':
-            self.run
+            self.run()
 
     def play(self):
         request_headers = self.headers
