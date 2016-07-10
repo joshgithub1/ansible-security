@@ -13,14 +13,15 @@ class CleanerBotTestFixture(unittest.TestCase):
     def setUp(self):
         print
         print
-        print("Testing in: %s" % REPO_DIR)
+        print "Testing in: %s" % REPO_DIR
         print
         self.files = self.find_py_files(REPO_DIR)
 
-    def find_py_files(self, dirname):
+    @classmethod
+    def find_py_files(cls, dirname):
         pyfiles = []
-        for root, dirs, files in os.walk(dirname):
-            for file in files:
-                if file.endswith('.py'):
-                    pyfiles.append(os.path.join(root, file))
+        for root, _dirs, files in os.walk(dirname):
+            for name in files:
+                if name.endswith('.py'):
+                    pyfiles.append(os.path.join(root, name))
         return pyfiles

@@ -14,6 +14,7 @@ dependencies:
     - tar -xf ~/deps/bats_v${BATS_VER}.tar.gz
     - sudo bats-${BATS_VER}/install.sh /usr/local
     - sudo pip install flake8
+    - sudo pip install pylint
     - sudo pip install boto
   override:
     - docker info

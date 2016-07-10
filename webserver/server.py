@@ -27,10 +27,12 @@ playbook_whitelist = {
 
 class RequestHandler(BaseHTTPRequestHandler):
 
-    def log(self, a_string):
+    @classmethod
+    def log(cls, a_string):
         print a_string
 
-    def alphafy(self, a_string):
+    @classmethod
+    def alphafy(cls, a_string):
         pattern = "[^a-z0-9_]"
         return re.sub(pattern, "_", a_string, flags=re.IGNORECASE)
 
@@ -44,8 +46,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.send_response(404, 'unsupported endpoint')
 
     def play(self):
-        request_headers = self.headers
-        content_length = request_headers.getheaders('content-length')
+        content_length = self.headers.getheaders('content-length')
         length = int(content_length[0]) if content_length else 0
         post_data = json.loads(self.rfile.read(length))
         self.log(post_data)
@@ -98,7 +99,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         os.putenv('ANSIBLE_HOSTS', path + '/'"hosts")
 
         proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-        (out, err) = proc.communicate()
+        (out, _err) = proc.communicate()
 
         self.log("program output: " + out)
         self.log(command)
@@ -106,16 +107,17 @@ class RequestHandler(BaseHTTPRequestHandler):
 
         # test pass string output from proc
         #
-        self.send_response = (200, out)
+        self.send_response(200, out)
         return
 
     def run(self):
-        return  # not implemented yet, TODO
+        self.send_response(200, "not implemented yet")
+        return
 
 
 def main():
     port = 8080
-    print('Listening on localhost:%s' % port)
+    print 'Listening on localhost:%s' % port
     server = HTTPServer(('', port), RequestHandler)
     server.serve_forever()
 
