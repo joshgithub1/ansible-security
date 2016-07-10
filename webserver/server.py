@@ -28,6 +28,9 @@ playbook_whitelist = {
 
 class RequestHandler(BaseHTTPRequestHandler):
 
+    def log(self, a_string):
+        print a_string
+
     def alphafy(self, a_string):
         pattern = "[^a-z0-9_]"
         return re.sub(pattern, "_", a_string, flags=re.IGNORECASE)
@@ -46,11 +49,10 @@ class RequestHandler(BaseHTTPRequestHandler):
         content_length = request_headers.getheaders('content-length')
         length = int(content_length[0]) if content_length else 0
         post_data = json.loads(self.rfile.read(length))
-        # logging
-        print post_data
+        self.log(post_data)
 
         playbook = post_data['playbook']
-        print playbook  # logging
+        self.log(playbook)
 
         if not playbook:
             self.send_response(400, 'playbook not sent')
@@ -61,15 +63,12 @@ class RequestHandler(BaseHTTPRequestHandler):
             return
 
         flags = post_data['flags']
-
-        # logging
-        print flags
+        self.log(flags)
 
         # Build a command based on provided flags and arguments.
         command = "ansible-playbook"
         for flag in flags:
-            # logging
-            print flag
+            self.log(flag)
 
             if flag['flag'] not in playbook_whitelist.keys():
                 self.send_response(400, "invalid flag")
@@ -77,8 +76,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
             if playbook_whitelist[flag['flag']] and not flag['argument']:
                 self.send_response(400, "provided argument to non argument flag")
-                # logging
-                print flag['argument']
+                self.log(flag['argument'])
                 return
 
             command += " {0}".format(flag['flag'])
@@ -99,11 +97,9 @@ class RequestHandler(BaseHTTPRequestHandler):
         proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
         (out, err) = proc.communicate()
 
-        # logging
-        # use os.system(command) in favor of subprocess
-        print "program output:", out
-        print (command)
-        print path
+        self.log("program output: " + out)
+        self.log(command)
+        self.log(path)
 
         # test pass string output from proc
         #
