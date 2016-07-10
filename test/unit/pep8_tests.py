@@ -1,14 +1,14 @@
 #!/usr/bin/envpython
 
 import unittest
-import pep8
+import pycodestyle as pep8
 import os
 from unit.fixture import CleanerBotTestFixture, REPO_DIR
 
 
 class TestPep8(CleanerBotTestFixture):
     def test_conformance(self):
-        # http://pep8.readthedocs.org/en/latest/intro.html#error-codes
+        # https://pycodestyle.readthedocs.io/en/latest/intro.html#error-codes
         tests = [
             'E1',    # indentation
             'E2',    # whitespace errors
