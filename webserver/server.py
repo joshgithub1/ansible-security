@@ -50,6 +50,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         print post_data
 
         playbook = post_data['playbook']
+        print playbook  # logging
 
         if not playbook:
             self.send_response(400, 'playbook not sent')
@@ -64,29 +65,25 @@ class RequestHandler(BaseHTTPRequestHandler):
         # logging
         print flags
 
+        # Build a command based on provided flags and arguments.
+        command = "ansible-playbook"
         for flag in flags:
             # logging
             print flag
 
-        for flag in flags:
             if flag['flag'] not in playbook_whitelist.keys():
                 self.send_response(400, "invalid flag")
                 return
 
-        if playbook_whitelist[flag['flag']] and not flag['argument']:
-            self.send_response(400, "provided argument to non argument flag")
-            # logging
-            print flag['argument']
-            return
+            if playbook_whitelist[flag['flag']] and not flag['argument']:
+                self.send_response(400, "provided argument to non argument flag")
+                # logging
+                print flag['argument']
+                return
 
-        print playbook
-        command = "ansible-playbook"
-
-        if flags:
-            for flag in flags:
-                command += " {0}".format(flag['flag'])
-                if flag['argument']:
-                    command += " {0}".format(flag['argument'])
+            command += " {0}".format(flag['flag'])
+            if flag['argument']:
+                command += " {0}".format(flag['argument'])
 
         # base_dir: must add the env_var file with docker run --env-file /home/core/env_vars
         directory = post_data['git_handle'] + '/' + post_data['branch_name']
