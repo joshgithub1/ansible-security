@@ -75,7 +75,9 @@ class RequestHandler(BaseHTTPRequestHandler):
                 return
 
             if playbook_whitelist[flag['flag']] and not flag['argument']:
-                self.send_response(400, "provided argument to non argument flag")
+                self.send_response(
+                    400, "provided argument to non argument flag"
+                )
                 self.log(flag['argument'])
                 return
 
@@ -83,13 +85,15 @@ class RequestHandler(BaseHTTPRequestHandler):
             if flag['argument']:
                 command += " {0}".format(flag['argument'])
 
-        # base_dir: must add the env_var file with docker run --env-file /home/core/env_vars
+        # base_dir: must add the env_var file with
+        # docker run --env-file /home/core/env_vars
         directory = post_data['git_handle'] + '/' + post_data['branch_name']
         base_dir = os.environ['base_dir']
         safe_dir = self.alphafy(directory)
         command += " {0}/{1}/{2}".format(base_dir, safe_dir, playbook)
 
-        # Use this to set ANSIBLE_HOSTS environment variable as base_dir, safe_dir
+        # Use this to set ANSIBLE_HOSTS environment variable
+        # as base_dir, safe_dir
         path = os.path.join(base_dir, safe_dir)
         os.chdir(path)
         os.putenv('ANSIBLE_HOSTS', path + '/'"hosts")
@@ -119,9 +123,10 @@ def main():
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.usage = ("Creates an http-server that will echo out any GET or POST parameters\n"
-                    "Run:\n\n"
-                    "   reflect")
+    parser.usage = (
+        "Creates an http-server to echo any GET or POST parameters\n"
+        "Run:\n\n"
+        "   reflect")
     (options, args) = parser.parse_args()
 
     main()

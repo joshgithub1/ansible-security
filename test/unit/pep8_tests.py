@@ -14,7 +14,7 @@ class TestPep8(CleanerBotTestFixture):
             'E2',    # whitespace errors
             'E3',    # blank line errors
             'E4',    # import errors
-            'E502',  # the backslash is redundant between brackets
+            'E5',    # line length
             'E7',    # statement errors
             'E9',    # runtime errors (SyntaxError, IndentationError, IOError)
             'W1',    # indentation warnings
@@ -24,7 +24,10 @@ class TestPep8(CleanerBotTestFixture):
             'W6',    # deprecated features
         ]
 
-        checker = pep8.StyleGuide(select=tests, paths=[REPO_DIR], reporter=pep8.StandardReport)
+        checker = pep8.StyleGuide(
+            select=tests, paths=[REPO_DIR],
+            reporter=pep8.StandardReport
+        )
         report = checker.check_files()
         result = report.total_errors
         output = "\n".join(report.get_statistics())
