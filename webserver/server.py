@@ -34,12 +34,12 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         request_path = self.path
-
-        # handle the play endpoint
         if request_path == '/play':
             self.play()
         elif request_path == '/run':
             self.run()
+        else:
+            self.send_response(404, 'unsupported endpoint')
 
     def play(self):
         request_headers = self.headers
