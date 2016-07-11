@@ -31,5 +31,5 @@ load options
    port=$(docker port hooktest | awk -F: '{print $NF}')
 fi
  run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "hosts"}], "playbook": "fixtures/etc/ansible/play_test.yml"}' http://${ip}:${port}/play
-  [[ ${lines} =~ PLAY ]]
+  [[ ${output} =~ PLAY ]]
 }
