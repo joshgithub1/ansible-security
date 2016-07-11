@@ -19,7 +19,7 @@ load options
   [[ ${output} =~ autostager.py ]]
 }
 
-@test "ansible-controller: webserver is in path responds to clientside requests properly" {
+@test "ansible-controller: webserver responds to curl" {
  run docker run -d --name=webtest -p 8080:8080 --volumes-from staging-data:ro ansible-controller
  if [[ x$DOCKER_HOST = x ]]; then
  # use local network namespace
@@ -31,8 +31,7 @@ load options
    port=$(docker port hooktest | awk -F: '{print $NF}')
 fi
  run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "hosts"}], "playbook": "fixtures/etc/ansible/play_test.yml"}' http://${ip}:${port}/play
- # [[ ${output} =~ About ]]
-   [[ ${lines[12]} =~ PLAY ]]
+  [[ ${output} =~ About ]]
 }
 
 
