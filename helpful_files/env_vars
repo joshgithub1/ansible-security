@@ -1,0 +1,16 @@
+# git repo for autostager
+repo_slug=cleanerbot/ansible-security
+
+# where we keep the autostager data
+base_dir=/opt/staging
+
+# the access token on `kropped` account
+access_token=<redacted>
+
+# timers
+refresh_time=30
+timeout=120
+
+# aws access key and token used for boto & ansible aws builds
+aws_access_key_id=<redacted>
+aws_secret_access_key=<redacted>
