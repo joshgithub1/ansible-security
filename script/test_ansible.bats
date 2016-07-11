@@ -32,7 +32,7 @@ load options
 fi
  run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "hosts"}], "playbook": "fixtures/etc/ansible/play_test.yml"}' http://${ip}:${port}/play
  # [[ ${output} =~ About ]]
-   [[[ ${lines[12]} =~ PLAY ]]
+   [[ ${lines[12]} =~ PLAY ]]
 }
 
 
