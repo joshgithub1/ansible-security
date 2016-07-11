@@ -19,7 +19,7 @@ load options
   [[ ${output} =~ autostager.py ]]
 }
 
-@test "ansible-controller: webserver is in path and responding to webhooks" {
+@test "ansible-controller: webserver is in path responds to clientside requests properly" {
  run docker run -d --name=webtest -p 8080:8080 --volumes-from staging-data:ro ansible-controller
  if [[ x$DOCKER_HOST = x ]]; then
  # use local network namespace
@@ -30,8 +30,8 @@ load options
    ip=$(echo ${DOCKER_HOST} | awk -F/ '{print $NF}' | cut -d: -f0)
    port=$(docker port hooktest | awk -F: '{print $NF}')
 fi
- run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "hosts"}], "playbook": "playbooks/git-clonerepos.yml"}' http://${ip}:${port}/play
-  
+ #run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "hosts"}], "playbook": "playbooks/git-clonerepos.yml"}' http://${ip}:${port}/play
+ run /ansible-security/helpful_files/play.py cleanerbot_master -i hosts /ansible-security/fixtures/etc/ansible/play-test.yml 
   [[ ${output} =~ About ]]
 }
 
