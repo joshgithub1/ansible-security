@@ -5,17 +5,17 @@ load options
 # note: BATS does not respect this syntax: ${DATA_IMAGE}
 
 @test "ansible-controller: Ansible 2.x is installed and running" {
-  run docker run --volumes-from $FIXTURES_DATA_IMAGE:ro -t -i --entrypoint bash $CONTROLLER_IMAGE -c "cd /opt/ansible; ansible --version"
+  run docker run --volumes-from $DATA_IMAGE:ro -t -i --entrypoint bash $CONTROLLER_IMAGE -c "cd /opt/ansible; ansible --version"
   [[ ${output} =~ ansible\ 2\. ]]
 }
 
 @test "ansible-controller: Autostager staging directory for contributor branches is in path" {
- run docker run --volumes-from $FIXTURES_DATA_IMAGE:ro -t -i --entrypoint bash $CONTROLLER_IMAGE -c "ls -l /opt | grep staging"
+ run docker run --volumes-from $DATA_IMAGE:ro -t -i --entrypoint bash $CONTROLLER_IMAGE -c "ls -l /opt | grep staging"
   [[ ${output} =~ staging ]]
 }
 
 @test "autostager: Autostager python script is in path" {
- run docker run --volumes-from $FIXTURES_DATA_IMAGE:rw -t -i --entrypoint bash $AUTOSTAGER_IMAGE -c "ls -l /autostager/autostager"
+ run docker run --volumes-from $DATA_IMAGE:rw -t -i --entrypoint bash $AUTOSTAGER_IMAGE -c "ls -l /autostager/autostager"
   [[ ${output} =~ autostager.py ]]
 }
 
