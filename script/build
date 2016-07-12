@@ -6,7 +6,10 @@ set -e
 options="--rm"
 echo $@ | grep '\--no-cache' &> /dev/null && options="$options --no-cache" || :
 
-echo "Creating Staging Data volume"
+echo "Creating fixtures staging data volume"
+docker build -f fixtures/Dockerfile -t ${FIXTURES_DATA_IMAGE} .
+
+echo "Creating staging data volume"
 docker create -v /opt/staging --name ${DATA_IMAGE} alpine true
 
 echo "Building the Ansible Controller image"
