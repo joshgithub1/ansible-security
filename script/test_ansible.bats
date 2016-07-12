@@ -19,6 +19,12 @@ load options
   [[ ${output} =~ autostager.py ]]
 }
 
+@test "ansible-controller: fixtures path is set {
+ # check to see if the $FIXTURES_DATA_IMAGE is properly set iun path for controller to see playbook
+ run docker run --volumes-from $FIXTURES_DATA_IMAGE -t -i --entrypoint bash $CONTROLLER_IMAGE -c "ls -l /opt/staging/cleanerbot_master/ansible-security"
+ [[ ${output} =~ fixtures ]]
+}
+
 @test "ansible-controller: webserver responds to curl" {
  run docker run -d --name=webtest -p 8080:8080 --volumes-from $FIXTURES_DATA_IMAGE:ro ansible-controller
  if [[ x$DOCKER_HOST = x ]]; then
