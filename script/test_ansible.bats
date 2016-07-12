@@ -19,7 +19,7 @@ load options
   [[ ${output} =~ autostager.py ]]
 }
 
-@test "ansible-controller: fixtures path is set {
+@test "ansible-controller: fixtures path is set" {
  # check to see if the $FIXTURES_DATA_IMAGE is properly set iun path for controller to see playbook
  run docker run --volumes-from $FIXTURES_DATA_IMAGE -t -i --entrypoint bash $CONTROLLER_IMAGE -c "ls -l /opt/staging/cleanerbot_master/ansible-security"
  [[ ${output} =~ fixtures ]]
