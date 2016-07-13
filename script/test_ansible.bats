@@ -26,7 +26,8 @@ load options
 }
 
 @test "ansible-controller: webserver responds to curl" {
- run docker run -d --name=webtest -p 8080:8080 --volumes-from $FIXTURES_DATA_IMAGE:ro ansible-controller
+ # run docker run -d --name=webtest -p 8080:8080 --volumes-from $FIXTURES_DATA_IMAGE:ro ansible-controller
+ run docker run -d --name=webtest -p 8080:8080 -v /fixtures/etc/ansible:/opt/staging/cleanerbot_master/ansible-security/ ansible-controller
  if [[ x$DOCKER_HOST = x ]]; then
  # use local network namespace
    ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' webtest)
