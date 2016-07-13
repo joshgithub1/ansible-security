@@ -44,5 +44,5 @@ load options
    port=8080
  run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "ansible-security/play_test.yml"}' http://${ip}:${port}/play
   [[ ${lines[0]} =~ About ]]
-  assert_output --regexp '(PLAY RECAP)'
+  assert_output --regexp '^(PLAY RECAP)$'
 }
