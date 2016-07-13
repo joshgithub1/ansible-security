@@ -43,6 +43,7 @@ load options
    ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' webtest)
    port=8080
  run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "ansible-security/play_test.yml"}' http://${ip}:${port}/play
+  [ "$status" -eq 0 ]
   grep -E '^(PLAY RECAP)$' <<< "$output"
   [[ ${output} =~ PLAY ]]
 }
