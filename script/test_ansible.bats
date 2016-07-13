@@ -25,7 +25,13 @@ load options
  [[ ${output} =~ play_test.yml ]]
 }
 
-@test "ansible-controller: webserver responds to curl" {
+@test "ansible-controller: fixtures playbook executes locally (in container)" {
+ # check to see if ansible can execute the playbook locally
+ run docker run -i -t --name=playtest --env-file helpful_files/env_vars -v /home/ubuntu/ansible-security/fixtures/etc/ansible:/opt/staging/cleanerbot_master/ansible-security --entrypoint bash ansible-controller -c "ansible-playbook -i inventory /opt/staging/cleanerbot_master/ansible-security/play_test.yml"
+ [[ ${output} =~ PLAY ]]
+}
+
+@test "ansible-controller: webserver responds to curl and playbook executes remotely (outside container)" {
  # run docker run -d --name=webtest -p 8080:8080 --volumes-from $FIXTURES_DATA_IMAGE:ro ansible-controller
  run docker run -d --name=webtest -p 8080:8080 --env-file helpful_files/env_vars -v /home/ubuntu/ansible-security/fixtures/etc/ansible:/opt/staging/cleanerbot_master/ansible-security ansible-controller
    ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' webtest)
