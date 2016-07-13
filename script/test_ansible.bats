@@ -31,18 +31,14 @@ load options
  [[ ${output} =~ PLAY ]]
 }
 
-# Regex expression assertions example https://github.com/ztombol/bats-assert
-# @test "assert_output() regular expression matching" {
-#  run echo 'Foobar 0.1.0'
-#  assert_output --regexp '^Foobar v[0-9]+\.[0-9]+\.[0-9]$'
-# }
-
 @test "ansible-controller: webserver responds to curl and playbook executes remotely (outside container)" {
- # run docker run -d --name=webtest -p 8080:8080 --volumes-from $FIXTURES_DATA_IMAGE:ro ansible-controller
+ # check to see if ansible webserver accepts json data (commands) and runs fixtures playbook remotely
+ # sending feedback of play execution to user
  run docker run -d --name=webtest -p 8080:8080 --env-file helpful_files/env_vars -v /home/ubuntu/ansible-security/fixtures/etc/ansible:/opt/staging/cleanerbot_master/ansible-security ansible-controller
    ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' webtest)
    port=8080
-   TESTOUT=$(curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "ansible-security/play_test.yml"}' http://${ip}:${port}/play)
-  run echo $TESTOUT | grep RECAP
+   sleep 1
+   testoutput=$(curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "ansible-security/play_test.yml"}' http://${ip}:${port}/play)
+  run echo $testoutput | grep RECAP
  [[ ${output} =~ RECAP ]]
 }
