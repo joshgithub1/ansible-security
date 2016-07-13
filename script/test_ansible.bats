@@ -31,6 +31,12 @@ load options
  [[ ${output} =~ PLAY ]]
 }
 
+# Regex expression assertions example https://github.com/ztombol/bats-assert
+@test "assert_output() regular expression matching" {
+  run echo 'Foobar 0.1.0'
+  assert_output --regexp '^Foobar v[0-9]+\.[0-9]+\.[0-9]$'
+}
+
 @test "ansible-controller: webserver responds to curl and playbook executes remotely (outside container)" {
  # run docker run -d --name=webtest -p 8080:8080 --volumes-from $FIXTURES_DATA_IMAGE:ro ansible-controller
  run docker run -d --name=webtest -p 8080:8080 --env-file helpful_files/env_vars -v /home/ubuntu/ansible-security/fixtures/etc/ansible:/opt/staging/cleanerbot_master/ansible-security ansible-controller
