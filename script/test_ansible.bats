@@ -39,6 +39,7 @@ load options
    port=8080
    sleep 5
    testoutput=$(curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "ansible-security/play_test.yml"}' http://${ip}:${port}/play)
-  grep PLAY testoutput
+   echo $testoutput > testfile
+  grep PLAY testfile
  [[ ${output} =~ PLAY ]]
 }
