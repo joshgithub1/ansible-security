@@ -32,10 +32,10 @@ load options
 }
 
 # Regex expression assertions example https://github.com/ztombol/bats-assert
-@test "assert_output() regular expression matching" {
-  run echo 'Foobar 0.1.0'
-  assert_output --regexp '^Foobar v[0-9]+\.[0-9]+\.[0-9]$'
-}
+# @test "assert_output() regular expression matching" {
+#  run echo 'Foobar 0.1.0'
+#  assert_output --regexp '^Foobar v[0-9]+\.[0-9]+\.[0-9]$'
+# }
 
 @test "ansible-controller: webserver responds to curl and playbook executes remotely (outside container)" {
  # run docker run -d --name=webtest -p 8080:8080 --volumes-from $FIXTURES_DATA_IMAGE:ro ansible-controller
@@ -44,4 +44,5 @@ load options
    port=8080
  run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "ansible-security/play_test.yml"}' http://${ip}:${port}/play
   [[ ${lines[0]} =~ About ]]
+  assert_output --regexp '(PLAY RECAP)'
 }
