@@ -37,7 +37,7 @@ load options
  run docker run -d --name=webtest -p 8080:8080 --env-file helpful_files/env_vars -v /home/ubuntu/ansible-security/fixtures/etc/ansible:/opt/staging/cleanerbot_master/ansible-security ansible-controller
    ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' webtest)
    port=8080
-   sleep 1
+   sleep 5
    testoutput=$(curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "ansible-security/play_test.yml"}' http://${ip}:${port}/play)
   run echo $testoutput | grep RECAP
  [[ ${output} =~ RECAP ]]
