@@ -37,8 +37,8 @@ load options
    ip=$(echo ${DOCKER_HOST} | awk -F/ '{print $NF}' | cut -d: -f0)
    port=$(docker port hooktest | awk -F: '{print $NF}')
 fi
- run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "hosts"}], "playbook": "fixtures/etc/ansible/play_test.yml"}' http://${ip}:${port}/play
+ run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "hosts"}], "playbook": "ansible-security/play_test.yml"}' http://${ip}:${port}/play
   # we curl and run 'ansible-playbook' against /opt/staging/cleanerbot_master/ansible-security/fixtures/etc/ansible/play_test.yml
   # the full path is seeded by webserver.py with `ANSIBLE_HOSTS` + git_handle + branch_name + path
-  [[ ${output} =~ About ]]
+  [[ ${output} =~ PLAY ]]
 }
