@@ -21,14 +21,13 @@ load options
 
 @test "ansible-controller: fixtures path is set" {
  # check to see if the $FIXTURES_DATA_IMAGE is properly set iun path for controller to see playbook
- # run docker run --volumes-from $FIXTURES_DATA_IMAGE -t -i --entrypoint bash $CONTROLLER_IMAGE -c "ls -l /opt/staging/cleanerbot_master/ansible-security"
- run docker run -d --name=voltest -p 8080:8080 -v /fixtures/etc/ansible:/opt/staging/cleanerbot_master/ansible-security/ ansible-controller --entrypoint bash $CONTROLLER_IMAGE -c "ls -l /opt/staging/cleanerbot_master/ansible-security"
- [[ ${output} =~ play ]]
+ run docker run -i -t --name=voltest -p 8080:8080 --env-file helpful_files/env_vars -v /home/ubuntu/ansible-security/fixtures/etc/ansible:/opt/staging/cleanerbot_master/ansible-security --entrypoint bash ansible-controller -c "ls -l /opt/staging/cleanerbot_master/ansible-security"
+ [[ ${output} =~ play_test.yml ]]
 }
 
 @test "ansible-controller: webserver responds to curl" {
  # run docker run -d --name=webtest -p 8080:8080 --volumes-from $FIXTURES_DATA_IMAGE:ro ansible-controller
- run docker run -d --name=webtest -p 8080:8080 -v /fixtures/etc/ansible:/opt/staging/cleanerbot_master/ansible-security/ ansible-controller
+ run docker run -d --name=webtest -p 8080:8080 -v /home/ubuntu/ansible-security/fixtures/etc/ansible:/opt/staging/cleanerbot_master/ansible-security ansible-controller
  if [[ x$DOCKER_HOST = x ]]; then
  # use local network namespace
    ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' webtest)
@@ -41,5 +40,5 @@ fi
  run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "hosts"}], "playbook": "fixtures/etc/ansible/play_test.yml"}' http://${ip}:${port}/play
   # we curl and run 'ansible-playbook' against /opt/staging/cleanerbot_master/ansible-security/fixtures/etc/ansible/play_test.yml
   # the full path is seeded by webserver.py with `ANSIBLE_HOSTS` + git_handle + branch_name + path
-  [[ ${output} =~ About ]]
+  [[ ${output} =~ PLAY ]]
 }
