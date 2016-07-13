@@ -28,17 +28,8 @@ load options
 @test "ansible-controller: webserver responds to curl" {
  # run docker run -d --name=webtest -p 8080:8080 --volumes-from $FIXTURES_DATA_IMAGE:ro ansible-controller
  run docker run -d --name=webtest -p 8080:8080 --env-file helpful_files/env_vars -v /home/ubuntu/ansible-security/fixtures/etc/ansible:/opt/staging/cleanerbot_master/ansible-security ansible-controller
- if [[ x$DOCKER_HOST = x ]]; then
- # use local network namespace
    ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' webtest)
    port=8080
- else
- # accomodate remote docker execution.
-   ip=$(echo ${DOCKER_HOST} | awk -F/ '{print $NF}' | cut -d: -f0)
-   port=$(docker port hooktest | awk -F: '{print $NF}')
-fi
- run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "hosts"}], "playbook": "ansible-security/play_test.yml"}' http://${ip}:${port}/play
-  # we curl and run 'ansible-playbook' against /opt/staging/cleanerbot_master/ansible-security/fixtures/etc/ansible/play_test.yml
-  # the full path is seeded by webserver.py with `ANSIBLE_HOSTS` + git_handle + branch_name + path
+ run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "ansible-security/play_test.yml"}' http://${ip}:${port}/play
   [[ ${output} =~ PLAY ]]
 }
