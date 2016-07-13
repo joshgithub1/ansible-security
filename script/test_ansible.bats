@@ -19,7 +19,7 @@ load options
   [[ ${output} =~ autostager.py ]]
 }
 
-@test "ansible-controller: fixtures path is set" {
+@test "ansible-controller: fixtures path is set for testing" {
  # check to see if the $FIXTURES_DATA_IMAGE is properly set iun path for controller to see playbook
  run docker run -i -t --name=voltest -p 8080:8080 --env-file helpful_files/env_vars -v /home/ubuntu/ansible-security/fixtures/etc/ansible:/opt/staging/cleanerbot_master/ansible-security --entrypoint bash ansible-controller -c "ls -l /opt/staging/cleanerbot_master/ansible-security"
  [[ ${output} =~ play_test.yml ]]
@@ -37,5 +37,5 @@ load options
    ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' webtest)
    port=8080
  run curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "ansible-security/play_test.yml"}' http://${ip}:${port}/play
-  [[ ${output} =~ trying ]]
+  [[ ${output} =~ 8080 ]]
 }
