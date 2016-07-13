@@ -23,7 +23,7 @@ load options
  # check to see if the $FIXTURES_DATA_IMAGE is properly set iun path for controller to see playbook
  # run docker run --volumes-from $FIXTURES_DATA_IMAGE -t -i --entrypoint bash $CONTROLLER_IMAGE -c "ls -l /opt/staging/cleanerbot_master/ansible-security"
  run docker run -d --name=voltest -p 8080:8080 -v /fixtures/etc/ansible:/opt/staging/cleanerbot_master/ansible-security/ ansible-controller --entrypoint bash $CONTROLLER_IMAGE -c "ls -l /opt/staging/cleanerbot_master/ansible-security"
- [[ ${output} =~ play_test ]]
+ [[ ${output} =~ fixtures ]]
 }
 
 @test "ansible-controller: webserver responds to curl" {
