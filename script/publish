@@ -6,4 +6,6 @@ set -e
 docker login -e ${mail} -u ${user} -p ${pass}
 docker tag ${CONTROLLER_IMAGE} ${PUBLISHED_IMAGE}
 docker push ${PUBLISHED_IMAGE}
+docker tag ${AUTOSTAGER_IMAGE} ${PUBLISHED_AUTOSTAGER_IMAGE}
+docker push ${PUBLISHED_AUTOSTAGER_IMAGE}
 docker logout
