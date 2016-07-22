@@ -1,0 +1,21 @@
+FROM alpine:3.4
+MAINTAINER Tim Kropp @sometheycallme
+
+COPY /helpful_files /opt/client
+
+RUN apk upgrade --no-cache --available && \
+    apk add --no-cache \
+      python \
+      py-pip \
+      bash \
+      git \
+      curl \
+      && \
+    apk add --no-cache -X 'http://dl-cdn.alpinelinux.org/alpine/edge/main' \
+      'ansible>=2.0' \
+      && pip install --upgrade pip \
+      && pip install boto \
+      && pip install requests \
+      && \
+    :
+WORKDIR /opt/client

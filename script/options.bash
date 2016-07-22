@@ -6,6 +6,7 @@ else
   CAPS='--cap-drop all'
 fi
 
+CLIENT_IMAGE="client:latest"
 FIXTURES_DATA_IMAGE="fixtures-data"
 DATA_IMAGE="staging-data"
 CONTROLLER_IMAGE="ansible-controller:latest"
