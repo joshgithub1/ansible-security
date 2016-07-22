@@ -5,6 +5,7 @@ load options
 # note: BATS does not respect this syntax: ${DATA_IMAGE}
 
 @test "ansible-controller: Ansible 2.x is installed and running" {
+  sleep 3
   run docker run --volumes-from $DATA_IMAGE:ro -t -i --entrypoint bash $CONTROLLER_IMAGE -c "cd /opt/ansible; ansible --version"
   [[ ${output} =~ ansible\ 2\. ]]
 }
