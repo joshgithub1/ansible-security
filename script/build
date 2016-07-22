@@ -18,11 +18,17 @@ docker build $options -f dockerfiles/dockerfile-ansible -t ${CONTROLLER_IMAGE} .
 echo "Building the Autostager image"
 docker build $options -f dockerfiles/dockerfile-autostager -t ${AUTOSTAGER_IMAGE} .
 
-echo "Show Ansible image sizes."
+echo "Building the mock client image"
+docker build $options -f dockerfiles/dockerfile-client -t ${CLIENT_IMAGE} .
+
+echo "Show Ansible image size."
 docker images | grep ansible-security | sort
 
-echo "Show Autostager image sizes."
+echo "Show Autostager image size."
 docker images | grep autostager | sort
+
+echo "Show Client image size."
+docker images | grep client | sort
 
 echo "Show all docker images"
 docker images

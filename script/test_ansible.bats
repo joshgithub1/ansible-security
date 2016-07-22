@@ -5,6 +5,7 @@ load options
 # note: BATS does not respect this syntax: ${DATA_IMAGE}
 
 @test "ansible-controller: Ansible 2.x is installed and running" {
+  sleep 3
   run docker run --volumes-from $DATA_IMAGE:ro -t -i --entrypoint bash $CONTROLLER_IMAGE -c "cd /opt/ansible; ansible --version"
   [[ ${output} =~ ansible\ 2\. ]]
 }
@@ -20,7 +21,7 @@ load options
 }
 
 @test "ansible-controller: fixtures path is set for testing" {
- # check to see if the $FIXTURES_DATA_IMAGE is properly set iun path for controller to see playbook
+ # check to see if the $FIXTURES_DATA_IMAGE is properly set in path for controller to see playbook
  run docker run -i -t --name=voltest -p 8080:8080 --env-file helpful_files/env_vars -v /home/ubuntu/ansible-security/fixtures/etc/ansible:/opt/staging/cleanerbot_master/ansible-security --entrypoint bash ansible-controller -c "ls -l /opt/staging/cleanerbot_master/ansible-security"
  [[ ${output} =~ play_test.yml ]]
 }
@@ -42,4 +43,10 @@ load options
    echo $testoutput > testfile
   run grep PLAY testfile
  [[ ${output} =~ PLAY ]]
+}
+
+@test "mock-client: client play script is in path set for testing" {
+ # check to see if client side play.py script is in path 
+ run docker run -i -t --entrypoint bash $CLIENT_IMAGE -c "ls -l /opt/client"
+ [[ ${output} =~ play.py ]]
 }
