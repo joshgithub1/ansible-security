@@ -1,0 +1,15 @@
+---
+
+- hosts: localhost
+  connection: local
+  gather_facts: False
+
+  tasks:      
+  - name: BASIC VPC 
+    local_action: 
+      module: ec2_vpc
+      state: present
+      region: us-west-2
+      cidr_block: 192.168.0.0/16
+      resource_tags: { "Environment":"Development" }
+    register: vpc
