@@ -11,5 +11,5 @@ class TestFlake8(CleanerBotTestFixture):
         report = style_guide.check_files()
 
         if report.total_errors != 0:
-            output = "\n".join(report.get_statistics(count))
+            output = "\n".join(report.get_statistics(report))
             self.fail(output)
