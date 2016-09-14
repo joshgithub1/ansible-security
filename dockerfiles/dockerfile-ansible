@@ -18,7 +18,7 @@ RUN apk upgrade --no-cache --available && \
       && pip install boto \
       && pip install requests \
       && pip install markupsafe \
-      && pip install yaml \
+      && pip install pyyaml \
       && \
     :
 WORKDIR /opt/ansible
