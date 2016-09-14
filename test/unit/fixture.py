@@ -11,6 +11,9 @@ class CleanerBotTestFixture(unittest.TestCase):
     Fixture providing setup/teardown and utilities for unit tests.
     """
     def setUp(self):
+        """
+        Function calls class method function to find python files in repo dir
+        """
         print
         print
         print "Testing in: %s" % REPO_DIR
@@ -19,6 +22,9 @@ class CleanerBotTestFixture(unittest.TestCase):
 
     @classmethod
     def find_py_files(cls, dirname):
+        """
+        Function iterates through files in dirs to find python files
+        """
         pyfiles = []
         for root, _dirs, files in os.walk(dirname):
             for name in files:
