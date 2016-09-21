@@ -50,3 +50,7 @@ load options
  run docker run -i -t --entrypoint bash $CLIENT_IMAGE -c "ls -l /opt/client"
  [[ ${output} =~ play.py ]]
 }
+
+@test "cloud-custodian: custodian in path and responds to commands"
+ run docker run -i -i --entrypoint bash $CUSTODIAN_IMAGE -c "custodian -h"
+ [[ ${output} =~ custodian]]
