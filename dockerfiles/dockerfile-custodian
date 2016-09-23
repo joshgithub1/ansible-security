@@ -9,6 +9,7 @@ RUN apk upgrade --no-cache --available && \
       curl \
       && pip install pyyaml==3.11 \
       && pip install c7n \
+      && \
     :
 
 VOLUME ["/var/log/cloud-custodian", "/etc/cloud-custodian"]
