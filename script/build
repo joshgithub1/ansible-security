@@ -21,6 +21,9 @@ docker build $options -f dockerfiles/dockerfile-autostager -t ${AUTOSTAGER_IMAGE
 echo "Building the mock client image"
 docker build $options -f dockerfiles/dockerfile-client -t ${CLIENT_IMAGE} .
 
+echo "Building the Cloud Custodian image"
+docker build $options -f dockerfiles/dockerfile-custodian -t ${CUSTODIAN_IMAGE} .
+
 echo "Show Ansible image size."
 docker images | grep ansible-security | sort
 
@@ -29,6 +32,9 @@ docker images | grep autostager | sort
 
 echo "Show Client image size."
 docker images | grep client | sort
+
+echo "Show custodian image size."
+docker images | grep custodian | sort
 
 echo "Show all docker images"
 docker images
