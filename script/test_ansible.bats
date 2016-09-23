@@ -51,6 +51,8 @@ load options
  [[ ${output} =~ play.py ]]
 }
 
-@test "cloud-custodian: custodian in path and responds to commands"
+@test "cloud-custodian: custodian in path and responds to commands" {
+ # check to see if cloud custodian is in path and responds to help command
  run docker run -i -i --entrypoint bash $CUSTODIAN_IMAGE -c "custodian -h"
  [[ ${output} =~ custodian]]
+}
