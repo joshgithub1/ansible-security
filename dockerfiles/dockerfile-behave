@@ -1,0 +1,11 @@
+FROM alpine:3.4
+MAINTAINER Tim Kropp @sometheycallme
+
+RUN apk upgrade --no-cache --available && \
+    apk add --no-cache \
+      bash \
+      git \
+      curl \
+      && pip install behave \
+      && \
+    :
