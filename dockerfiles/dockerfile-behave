@@ -8,7 +8,9 @@ RUN apk upgrade --no-cache --available && \
       bash \
       git \
       curl 
+      python \
       py-pip \
+      && pip install --upgrade pip \
       && pip install behave \
       && \
     :
