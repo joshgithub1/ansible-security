@@ -24,6 +24,9 @@ docker build $options -f dockerfiles/dockerfile-client -t ${CLIENT_IMAGE} .
 echo "Building the Cloud Custodian image"
 docker build $options -f dockerfiles/dockerfile-custodian -t ${CUSTODIAN_IMAGE} .
 
+echo "Building the Behave image"
+docker build $options -f dockerfiles/dockerfile-behave -t ${BEHAVE_IMAGE} .
+
 echo "Show Ansible image size."
 docker images | grep ansible-security | sort
 
