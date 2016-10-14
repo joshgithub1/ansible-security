@@ -1,2 +1,2 @@
 [flake8]
-exclude = .git,fixtures/behave
+exclude = fixtures
