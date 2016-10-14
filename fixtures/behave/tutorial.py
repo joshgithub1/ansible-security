@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-import explicit
-from behave import given, when, then, step
+from behave import given, when, then
 
 @given('we have behave installed')
 def step_impl(context):
