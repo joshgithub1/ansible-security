@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from behave import *
 
 @given('we have behave installed')
