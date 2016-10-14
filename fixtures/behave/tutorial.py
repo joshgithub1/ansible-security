@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from behave import *
+import behave
 
 @given('we have behave installed')
 def step_impl(context):
