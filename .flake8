@@ -1,2 +1,2 @@
 [flake8]
-exclude = fixtures
+exclude = fixtures,fixtures/behave/tutorial.py
