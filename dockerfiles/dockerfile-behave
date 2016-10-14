@@ -5,12 +5,15 @@ COPY /fixtures/behave /tutorials
 
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
+      python \
+      gcc \
       bash \
       git \
       curl 
-      python \
       py-pip \
       && pip install --upgrade pip \
       && pip install behave \
       && \
     :
+
+ENTRYPOINT ["python"]
