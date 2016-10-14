@@ -6,11 +6,11 @@ COPY /fixtures/behave /tutorials
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
       python \
+      py-pip \
       gcc \
       bash \
       git \
-      curl 
-      py-pip \
+      curl \ 
       && pip install --upgrade pip \
       && pip install behave \
       && \
