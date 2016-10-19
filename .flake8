@@ -1,2 +1,2 @@
 [flake8]
-exclude = fixtures,fixtures/behave/tutorial.py
+exclude = .git,fixtures,dockerfiles,fixtures/behave/tutorial.py
