@@ -16,6 +16,7 @@ dependencies:
     - sudo pip install flake8
     - sudo pip install pylint
     - sudo pip install boto
+    - sudo pip install behave
   override:
     - docker info
     - docker version

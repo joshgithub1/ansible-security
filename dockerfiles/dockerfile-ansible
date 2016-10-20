@@ -19,6 +19,7 @@ RUN apk upgrade --no-cache --available && \
       && pip install requests \
       && pip install markupsafe \
       && pip install pyyaml \
+      && pip install jinja2 \
       && \
     :
 WORKDIR /opt/ansible

@@ -1,0 +1,2 @@
+[flake8]
+exclude = .yml,.bats,.git,fixtures,dockerfiles,fixtures/behave/tutorial.py

@@ -28,6 +28,6 @@ class CleanerBotTestFixture(unittest.TestCase):
         pyfiles = []
         for root, _dirs, files in os.walk(dirname):
             for name in files:
-                if name.endswith('.py'):
+                if name.endswith('.py') and not name.startswith('tutorial'):
                     pyfiles.append(os.path.join(root, name))
         return pyfiles

@@ -1,0 +1,19 @@
+FROM alpine:3.4
+MAINTAINER Tim Kropp @sometheycallme
+
+COPY /fixtures/behave /tutorials
+
+RUN apk upgrade --no-cache --available && \
+    apk add --no-cache \
+      python \
+      py-pip \
+      gcc \
+      bash \
+      git \
+      curl \ 
+      && pip install --upgrade pip \
+      && pip install behave \
+      && \
+    :
+
+ENTRYPOINT ["python"]
