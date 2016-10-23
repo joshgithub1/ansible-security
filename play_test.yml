@@ -1,6 +1,0 @@
----
-- hosts: local
-  connection: local
-  tasks:
-  - name: "Ansible Ping Localhost"
-    shell: echo "Ansible test" 
