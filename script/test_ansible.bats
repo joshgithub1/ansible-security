@@ -41,7 +41,7 @@ load options
    sleep 5
    testoutput=$(curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "ansible-security/play_test.yml"}' http://${ip}:${port}/play)
    echo $testoutput > testfile
-  run grep PLAY testfile
+  run grep branch_name testfile
  [[ ${output} =~ branch_name ]]
 }
 
