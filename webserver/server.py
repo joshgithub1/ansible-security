@@ -99,7 +99,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         os.putenv('ANSIBLE_HOSTS', path + '/'"hosts")
 
         proc = subprocess.Popen(
-	    shlex.split(command), stdout=subprocess.PIPE, shell=False)
+            shlex.split(command), stdout=subprocess.PIPE, shell=False)
         (out, _err) = proc.communicate()
 
         self.log("program output: " + out)
