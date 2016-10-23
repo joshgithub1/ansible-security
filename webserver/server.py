@@ -6,7 +6,7 @@ import json
 import os
 import re
 import subprocess
-
+import shlex
 
 playbook_whitelist = {
     '-v': False,
