@@ -39,7 +39,7 @@ load options
    ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' webtest)
    port=8080
    sleep 5
-   testoutput=$(curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "ansible-security/play_test.yml"}' http://${ip}:${port}/play)
+   testoutput=$(curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "ansible-security/fixtures/etc/ansible/play_test.yml"}' http://${ip}:${port}/play)
    echo $testoutput > testfile
   run grep connected testfile
  [[ ${output} =~ connected ]]
