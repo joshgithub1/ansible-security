@@ -41,8 +41,8 @@ load options
    sleep 5
    testoutput=$(curl -v -X POST -d '{"branch_name": "master", "git_handle": "cleanerbot", "flags": [{"flag": "-i", "argument": "inventory"}], "playbook": "fixtures/etc/ansible/play_test.ym"}' http://${ip}:${port}/play)
    echo $testoutput > testfile
-  run grep POST testfile
- [[ ${output} =~ POST ]]
+  run grep PLAY testfile
+ [[ ${output} =~ PLAY ]]
 }
 
 @test "mock-client: client play script is in path set for testing" {
