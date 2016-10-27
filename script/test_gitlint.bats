@@ -12,4 +12,6 @@ load options
 
 @test "gitlint: security conformity field checker is in place" {
  # test gitlint against a commit with gitlint-hook
+ run docker run -t -i --entrypoint bash $CLIENT_IMAGE -c "cd /ansible-security; gitlint"
+  [[ ${output} =~ ]]
 }
