@@ -10,7 +10,6 @@ RUN apk upgrade --no-cache --available && \
       bash \
       git \
       curl \
-      && \
       && git clone https://github.com/cleanerbot/ansible-security \
       && pip install --upgrade pip \
       && pip install boto \
