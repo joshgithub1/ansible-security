@@ -10,12 +10,13 @@ RUN apk upgrade --no-cache --available && \
       bash \
       git \
       curl \
-      && \
-    apk add --no-cache -X 'http://dl-cdn.alpinelinux.org/alpine/edge/main' \
-      'ansible>=2.0' \
+      && git clone https://github.com/cleanerbot/ansible-security \
       && pip install --upgrade pip \
       && pip install boto \
       && pip install requests \
+      && pip install gitlint \
       && \
     :
-WORKDIR /opt/client
+
+WORKDIR /ansible-security
+ENTRYPOINT ["gitlint"]
