@@ -19,5 +19,4 @@ runtime:
 .PHONY: test
 test: check
 	script/pylint
-	bats script/test_gitlint.bats
-	bats script/test_ansible.bats
+	bats script/test_*.bats
