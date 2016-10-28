@@ -11,12 +11,14 @@ RUN apk upgrade --no-cache --available && \
       git \
       curl \
       && git clone https://github.com/cleanerbot/ansible-security \
+      && git clone https://github.com/jorisroovers/gitlint.git \
       && pip install --upgrade pip \
       && pip install boto \
       && pip install requests \
-      && pip install gitlint \
+      && pip install -r /jorisroovers/requirements.txt \
+      && python /jorisroovers/setup.py develop \
       && \
     :
 
 WORKDIR /ansible-security
-ENTRYPOINT ["gitlint"]
+ENTRYPOINT ["gitlint --help"]
