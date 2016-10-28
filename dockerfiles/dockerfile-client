@@ -11,12 +11,18 @@ RUN apk upgrade --no-cache --available && \
       git \
       curl \
       && git clone https://github.com/cleanerbot/ansible-security \
+      && git clone https://github.com/jorisroovers/gitlint \
       && pip install --upgrade pip \
       && pip install boto \
       && pip install requests \
-      && pip install gitlint \
+      && pip install setuptools \
+      && pip install wheel==0.24.0 \
+      && pip install Click==5.1 \
+      && pip install sh==1.11 \
+      && pip install ordereddict==1.1 \
+      && pip install importlib==1.0.3 \
+      && cd gitlint; python setup.py develop \
       && \
     :
 
-WORKDIR /ansible-security
-ENTRYPOINT ["gitlint"]
+ENTRYPOINT ["gitlint --help"]
