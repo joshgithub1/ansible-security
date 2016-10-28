@@ -20,7 +20,7 @@ RUN apk upgrade --no-cache --available && \
       && pip install Click==5.1 \
       && pip install sh==1.11 \
       && pip install ordereddict==1.1 \
-      && pip install importlib==1.0.3
+      && pip install importlib==1.0.3 \
       && cd gitlint; python setup.py develop \
       && \
     :
