@@ -27,6 +27,9 @@ docker build $options -f dockerfiles/dockerfile-custodian -t ${CUSTODIAN_IMAGE} 
 echo "Building the Behave image"
 docker build $options -f dockerfiles/dockerfile-behave -t ${BEHAVE_IMAGE} .
 
+echo "Building the Compliance Masonry image"
+docker build $options -f dockerfiles/dockerfile-opencontrol -t ${OPENCONTROL_IMAGE} .
+
 echo "Show Ansible image size."
 docker images | grep ansible-security | sort
 

@@ -1,0 +1,19 @@
+FROM alpine:3.4
+MAINTAINER Tim Kropp @sometheycallme
+ENV GOPATH=$HOME/go
+# https://github.com/opencontrol/compliance-masonry/blob/master/docs/development.md
+
+RUN apk upgrade --no-cache --available && \
+    apk add --no-cache \
+      go \
+      bash \
+      git \
+      curl \ 
+      && \
+      && go get github.com/Masterminds/glide \
+      && go get github.com/opencontrol/compliance-masonry \
+      && glide up --all-dependencies \
+      && \
+    :
+
+ENTRYPOINT ["compliance-masonry"]
