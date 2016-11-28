@@ -9,7 +9,6 @@ RUN apk upgrade --no-cache --available && \
       bash \
       git \
       curl \ 
-      && \
       && go get github.com/Masterminds/glide \
       && go get github.com/opencontrol/compliance-masonry \
       && glide up --all-dependencies \
