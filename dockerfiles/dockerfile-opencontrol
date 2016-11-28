@@ -11,8 +11,8 @@ RUN apk upgrade --no-cache --available && \
       git \
       curl \ 
       && go get github.com/opencontrol/compliance-masonry \
-      && glide up --all-dependencies \
+      #&& glide up --all-dependencies \
       && \
     :
 
-ENTRYPOINT ["compliance-masonry"]
+#ENTRYPOINT ["compliance-masonry"]
