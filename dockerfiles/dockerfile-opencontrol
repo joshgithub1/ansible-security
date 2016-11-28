@@ -6,12 +6,12 @@ ENV GOPATH=$HOME/go
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
       go \
-      glide \
       bash \
       git \
       curl \ 
       && go get github.com/opencontrol/compliance-masonry \
-      #&& glide up --all-dependencies \
+      && curl https://glide.sh/get \
+      && glide up --all-dependencies \
       && \
     :
 
