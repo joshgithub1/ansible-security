@@ -6,5 +6,5 @@ load options
 
 @test "opencontrol: in path and installed" {
   run docker run -t -i --entrypoint bash $OPENCONTROL_IMAGE -c "compliance-masonry"
-  [[ ${output} =~ usage ]]
+  [[ ${output} =~ NAME: ]]
 }
