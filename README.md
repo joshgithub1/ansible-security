@@ -1,3 +1,6 @@
+ansible-security  [![](https://badge.imagelayers.io/sometheycallme/ansible-controller:latest.svg)](https://imagelayers.io/?images=sometheycallme/ansible-controller:latest 'Get your own badge on imagelayers.io')
+
+
 # Ansible for security automation
 
 Project Version: 0.0.1 (alpha)
